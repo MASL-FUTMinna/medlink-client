@@ -45,7 +45,7 @@ Contributions, issues, and feature requests are welcome!
 
 ### Contribution Guidelines
 
-1. Clone the repo `git clone https://github.com/hngx-org/zuriportfolio-frontend.git`.
+1. Clone the repo `git clone  https://github.com/Superfly101/medlink.git`.
 2. Create a new branch from the `dev` branch `git checkout -b Feat/{feature you're working on}`
 3. Make sure your branch is up to date with the `dev` branch: `git pull origin dev`
 4. After making changes, do `git add .`
