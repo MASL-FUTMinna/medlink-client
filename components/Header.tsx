@@ -6,13 +6,13 @@ const Header = () => {
     <header>
       <nav className="section w-full flex justify-between items-center">
         <h2>
-          <Link href="/" className="text-accent-800 text-2xl">
+          <Link href="/" className="text-accent-800 font-extrabold text-2xl">
             Medlink
           </Link>
         </h2>
 
         <div className="flex justify-end gap-20 font-head">
-          <ul className="flex gap-8">
+          <ul className="gap-8 hidden md:flex">
             <li>Home</li>
             <li>Appointments</li>
             <li>FAQ</li>
@@ -21,7 +21,7 @@ const Header = () => {
 
           <div className="flex gap-2 items-center font-semibold text-accent-800">
             <Image
-              src="assets/icons/user.svg"
+              src="/assets/icons/user.svg"
               alt="User icon"
               width={25}
               height={25}
