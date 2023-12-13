@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+        head: ["var(--font-lexend)"],
+      },
       colors: {
         accent: {
           50: "#F4F2FF",

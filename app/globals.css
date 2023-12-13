@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  font-family: var(--font-inter);
-}
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-head font-extrabold;
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-lexend);
+  .section {
+    @apply px-4 py-4 md:py-6 md:px-16 lg:px-28 xl:px-32;
+  }
 }
