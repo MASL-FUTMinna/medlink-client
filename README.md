@@ -2,35 +2,78 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+To run this project you need the following installed:
+
+- [Node 18.17](https://nodejs.org/) or later
+- [PNPM](https://pnpm.io/)
+
+### Setup
+
+Clone this repository to your desired folder:
 
 ```bash
+git clone https://github.com/Superfly101/medlink.git
+```
+
+Install project dependencies:
+```bash
+cd medlink
+pnpm install
+```
+
+Run development server:
+
+```bash
+pnpm dev
+#or
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
 # or
 bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<!-- CONTRIBUTING -->
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🤝 Contributing
 
-## Learn More
+Contributions, issues, and feature requests are welcome!
 
-To learn more about Next.js, take a look at the following resources:
+### Contribution Guidelines
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone the repo `git clone  https://github.com/Superfly101/medlink.git`.
+2. Create a new branch from the `dev` branch `git checkout -b Feat/{feature you're working on}`
+3. Make sure your branch is up to date with the `dev` branch: `git pull origin dev`
+4. After making changes, do `git add .`
+5. Commit your changes with a descriptive commit message: `git commit -m "your commit message"`.
+6. To make sure there are no conflicts, run `git pull origin dev`.
+7. Push changes to your new branch, run `git push -u origin Feat/{feature you're working on}`.
+8. Create a pull request to the `dev` branch not `main`.
+9. Ensure to describe your pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### _Commit CheatSheet_
 
-## Deploy on Vercel
+| Type     |                          | Description                                                                                                 |
+| -------- | ------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| feat     | Features                 | A new feature you're adding                                                                                              |
+| fix      | Bug Fixes                | A bug fix                                                                                                   |
+| docs     | Documentation            | Documentation only changes                                                                                  |
+| style    | Styles                   | Features and updates relating to styling                                                                   |
+| refactor | Code Refactoring         | A code change that neither fixes a bug nor adds a feature                                                   |
+| perf     | Performance Improvements | A code change that improves performance                                                                     |
+| test     | Tests                    | Adding missing tests or correcting existing tests                                                           |
+| build    | Builds                   | Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)         |
+| ci       | Continuous Integrations  | Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs) |
+| chore    | Chores                   | Other changes that don't modify, frontend or test files                                                    |
+| revert   | Reverts                  | Reverts a previous commit                                                                                   |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> _Sample Commit Messages_
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `feat: Added plugin info endpoints` := `feat` is used here because the feature was non-existent before the commit.
+
+
+
