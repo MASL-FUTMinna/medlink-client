@@ -1,3 +1,5 @@
+import ContactForm from "@/components/ContactForm";
+import FAQ from "@/components/FAQ";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
@@ -214,6 +216,8 @@ export default function Home() {
           </div>
         </section>
       </section>
+      <ContactForm />
+      <FAQ />
     </main>
   );
 }
