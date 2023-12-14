@@ -13,9 +13,9 @@ export default function Home() {
             Streamline access to healthcare services
           </h1>
           <p className="text-justify text-md">
-            Effortlessly manage your appointments with our intuitive doctor's
-            appointment system. Say goodbye to scheduling hassles and hello to
-            seamless, convenient bookings.
+            Effortlessly manage your appointments with our intuitive
+            doctor&apos;s appointment system. Say goodbye to scheduling hassles
+            and hello to seamless, convenient bookings.
           </p>
 
           <Button>Book an appointment</Button>
@@ -36,9 +36,9 @@ export default function Home() {
             Why Choose Us?
           </h3>
           <p className="font-medium">
-            Effortlessly manage your appointments with our intuitive doctor's
-            appointment system. Say goodbye to scheduling hassles and hello to
-            seamless, convenient bookings.
+            Effortlessly manage your appointments with our intuitive
+            doctor&apos;s appointment system. Say goodbye to scheduling hassles
+            and hello to seamless, convenient bookings.
           </p>
         </div>
         <div>
@@ -57,7 +57,7 @@ export default function Home() {
 
               <p>
                 Effortlessly manage your appointments with our intuitive
-                doctor's appointment system.
+                doctor&apos;s appointment system.
               </p>
             </li>
             <li className="flex flex-col gap-4 bg-[#FAFAFC] p-2">
@@ -91,7 +91,7 @@ export default function Home() {
 
               <p>
                 Effortlessly manage your appointments with our intuitive
-                doctor's appointment system.
+                doctor&apos;s appointment system.
               </p>
             </li>
             <li className="flex flex-col gap-4 bg-[#FAFAFC] p-2">
@@ -128,14 +128,14 @@ export default function Home() {
           </h3>
 
           <p className="font-medium">
-            Effortlessly manage your appointments with our intuitive doctor's
-            appointment system. Say goodbye to scheduling hassles and hello to
-            seamless, convenient bookings
+            Effortlessly manage your appointments with our intuitive
+            doctor&apos;s appointment system. Say goodbye to scheduling hassles
+            and hello to seamless, convenient bookings
           </p>
           <p className="font-medium">
-            Effortlessly manage your appointments with our intuitive doctor's
-            appointment system. Say goodbye to scheduling hassles and hello to
-            seamless, convenient bookings
+            Effortlessly manage your appointments with our intuitive
+            doctor&apos;s appointment system. Say goodbye to scheduling hassles
+            and hello to seamless, convenient bookings
           </p>
 
           <Button
@@ -157,9 +157,9 @@ export default function Home() {
           <h3 className="text-3xl font-semibold">Health News</h3>
 
           <p className="max-w-lg">
-            Effortlessly manage your appointments with our intuitive doctor's
-            appointment system. Say goodbye to scheduling hassles and hello to
-            seamless, convenient bookings.
+            Effortlessly manage your appointments with our intuitive
+            doctor&apos;s appointment system. Say goodbye to scheduling hassles
+            and hello to seamless, convenient bookings.
           </p>
         </article>
         <section className="flex flex-col md:flex-row gap-8">
@@ -174,9 +174,9 @@ export default function Home() {
 
             <h4 className="mt-4">Health News</h4>
             <p>
-              Effortlessly manage your appointments with our intuitive doctor's
-              appointment system. Say goodbye to scheduling hassles and hello to
-              seamless, convenient bookings.
+              Effortlessly manage your appointments with our intuitive
+              doctor&apos;s appointment system. Say goodbye to scheduling
+              hassles and hello to seamless, convenient bookings.
             </p>
             <Link href="/" className="text-accent-800 underline">
               Read more
@@ -194,7 +194,7 @@ export default function Home() {
               <h4>Health News</h4>
               <p>
                 Effortlessly manage your appointments with our intuitive
-                doctor's appointment system.
+                doctor&apos;s appointment system.
               </p>
               <Link href="/" className="text-accent-800 underline">
                 Read more
@@ -211,7 +211,7 @@ export default function Home() {
               <h4>Health News</h4>
               <p>
                 Effortlessly manage your appointments with our intuitive
-                doctor's appointment system.
+                doctor&apos;s appointment system.
               </p>
               <Link href="/" className="text-accent-800 underline">
                 Read more
@@ -228,7 +228,7 @@ export default function Home() {
               <h4>Health News</h4>
               <p>
                 Effortlessly manage your appointments with our intuitive
-                doctor's appointment system.
+                doctor&apos;s appointment system.
               </p>
               <Link href="/" className="text-accent-800 underline">
                 Read more
@@ -245,7 +245,7 @@ export default function Home() {
               <h4>Health News</h4>
               <p>
                 Effortlessly manage your appointments with our intuitive
-                doctor's appointment system.
+                doctor&apos;s appointment system.
               </p>
               <Link href="/" className="text-accent-800 underline">
                 Read more

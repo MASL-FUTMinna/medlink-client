@@ -7,7 +7,7 @@ const ContactForm = () => {
       <div className="py-16 px-2 flex flex-col gap-8 items-center justify-center text-center bg-accent-100 rounded-xl">
         <h3 className="text-3xl font-semibold">Contact Us</h3>
         <p className="font-medium max-w-2xl">
-          Effortlessly manage your appointments with our intuitive doctor's
+          Effortlessly manage your appointments with our intuitive doctor&apos;s
           appointment system. Say goodbye to scheduling hassles and hello to
           seamless, convenient bookings.
         </p>
