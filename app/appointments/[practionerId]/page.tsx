@@ -1,3 +1,4 @@
+import Button from "@/components/ui/Button";
 import { PRACTIONERS } from "@/constants/practioner";
 import Image from "next/image";
 
@@ -22,7 +23,7 @@ export default function Page({ params }: { params: { practionerId: string } }) {
           alt={`Image of Doctor ${practioner.name}`}
           width={400}
           height={800}
-          className="w-full max-w-xs"
+          className="w-fit h-fit mx-auto md:w-full"
         />
 
         <section>
@@ -67,6 +68,43 @@ export default function Page({ params }: { params: { practionerId: string } }) {
               necessitatibus ut, possimus laudantium dolores quod provident.
               Soluta iure veritatis quaerat pariatur optio. Enim!
             </p>
+          </section>
+          <section className="py-4 px-4 mt-8 flex flex-col gap-4 border border-gray-200">
+            <h3>Select Date</h3>
+
+            <input type="date" name="date" id="date" className="py-2" />
+          </section>
+          <section className="flex flex-col gap-4 py-8">
+            <h3>Available Time</h3>
+
+            <div className="flex gap-8">
+              <div className="py-3 px-6 border border-gray-100 rounded-md">
+                <h3>10:00 am</h3>
+              </div>
+              <div className="py-2 px-4 border border-gray-100 rounded-md">
+                <h3>10:00 am</h3>
+              </div>
+              <div className="py-2 px-4 border border-gray-100 rounded-md">
+                <h3>10:00 am</h3>
+              </div>
+            </div>
+
+            <div className="flex gap-8">
+              <Button className="!px-12">Next</Button>
+              <Button
+                leftIcon={
+                  <Image
+                    src="/assets/icons/cancel.svg"
+                    alt="Cancel icon"
+                    width={20}
+                    height={20}
+                  />
+                }
+                className="bg-transparent !text-[#F44336] underline underline-offset-2"
+              >
+                Cancel
+              </Button>
+            </div>
           </section>
         </section>
       </section>

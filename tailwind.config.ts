@@ -29,6 +29,10 @@ const config: Config = {
           800: "#4B4B4B",
           900: "#1B1B1B",
         },
+        gray: {
+          100: "#F0F2F5",
+          200: "#E4E7EC",
+        },
       },
     },
   },
