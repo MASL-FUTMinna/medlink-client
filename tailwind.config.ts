@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        practioners: "repeat(auto-fill, minmax(200px, 1fr))",
+        practitioners: "repeat(auto-fill, minmax(200px, 1fr))",
       },
       fontFamily: {
         sans: ["var(--font-inter)"],

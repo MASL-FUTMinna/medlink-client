@@ -1,4 +1,4 @@
-import PractionersList from "@/components/practioners/PractionersList";
+import PractionersList from "@/components/practitioners/PractitionersList";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 
