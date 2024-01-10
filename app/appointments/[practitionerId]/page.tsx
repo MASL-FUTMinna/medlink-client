@@ -1,13 +1,17 @@
 import Button from "@/components/ui/Button";
-import { PRACTIONERS } from "@/constants/practioner";
+import { PRACTITIONERS } from "@/constants/practitioner";
 import Image from "next/image";
 
-export default function Page({ params }: { params: { practionerId: string } }) {
-  const practioner = PRACTIONERS.find(
-    (practioner) => practioner.id === params.practionerId
+export default function Page({
+  params,
+}: {
+  params: { practitionerId: string };
+}) {
+  const practitioner = PRACTITIONERS.find(
+    (practitioner) => practitioner.id === params.practitionerId
   );
 
-  if (!practioner) {
+  if (!practitioner) {
     return <p className="section">Practioner Not Found</p>;
   }
 
@@ -19,8 +23,8 @@ export default function Page({ params }: { params: { practionerId: string } }) {
 
       <section className="section flex flex-col gap-8 md:flex-row">
         <Image
-          src={practioner.img}
-          alt={`Image of Doctor ${practioner.name}`}
+          src={practitioner.img}
+          alt={`Image of Doctor ${practitioner.name}`}
           width={400}
           height={800}
           className="w-fit h-fit mx-auto md:w-full"
@@ -28,7 +32,7 @@ export default function Page({ params }: { params: { practionerId: string } }) {
 
         <section>
           <section className="flex flex-col gap-2">
-            <h2 className="text-2xl">Dr. {practioner.name}</h2>
+            <h2 className="text-2xl">Dr. {practitioner.name}</h2>
             <div className="flex gap-2">
               <Image
                 src="/assets/icons/hospital.svg"
@@ -37,8 +41,8 @@ export default function Page({ params }: { params: { practionerId: string } }) {
                 height={20}
               />
               <p className="text-[#7A7A7A] text-xs">
-                {practioner.profession} at{" "}
-                <span className="uppercase">{practioner.hospital}</span>
+                {practitioner.profession} at{" "}
+                <span className="uppercase">{practitioner.hospital}</span>
               </p>
             </div>
             <p>
