@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type Prop = {
   id: string;
@@ -9,13 +12,18 @@ type Prop = {
 };
 
 const Practioner = ({ id, name, hospital, profession, img }: Prop) => {
+  const router = useRouter();
+
   return (
-    <li className="font-head cursor-pointer">
+    <li
+      className="font-head cursor-pointer"
+      onClick={() => router.push(`/appointments/${id}`)}
+    >
       <Image
         src={img}
         alt={`Headshot of ${name}`}
-        width={150}
-        height={300}
+        width={300}
+        height={600}
         className="w-full"
       />
       <h3>Dr. {name}</h3>

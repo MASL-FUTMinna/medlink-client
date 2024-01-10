@@ -11,9 +11,9 @@ export default function Page() {
             Find the right health practitioner for you
           </h1>
           <p className="font-medium">
-            Effortlessly manage your appointments with our intuitive doctor's
-            appointment system. Say goodbye to scheduling hassles and hello to
-            seamless, convenient bookings.
+            Effortlessly manage your appointments with our intuitive
+            doctor&apos;s appointment system. Say goodbye to scheduling hassles
+            and hello to seamless, convenient bookings.
           </p>
           <form>
             <div className="flex gap-4">
@@ -36,7 +36,7 @@ export default function Page() {
       </section>
       <section className="section py-16">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <h3 className="text-2xl">Result for "opticians"</h3>
+          <h3 className="text-2xl">Result for &quot;opticians&quot;</h3>
 
           <ul className="flex gap-6 font-medium text-[#667185]">
             <li className="flex gap-1">

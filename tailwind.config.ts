@@ -17,6 +17,7 @@ const config: Config = {
       },
       colors: {
         accent: {
+          20: "#F8F7FC",
           50: "#F4F2FF",
           100: "#DCD8FF",
           200: "#C3BEFF",
