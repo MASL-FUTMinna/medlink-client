@@ -8,12 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        practitioners: "repeat(auto-fill, minmax(200px, 1fr))",
+      },
       fontFamily: {
         sans: ["var(--font-inter)"],
         head: ["var(--font-lexend)"],
       },
       colors: {
         accent: {
+          20: "#F8F7FC",
           50: "#F4F2FF",
           100: "#DCD8FF",
           200: "#C3BEFF",
@@ -24,6 +28,10 @@ const config: Config = {
         neutral: {
           800: "#4B4B4B",
           900: "#1B1B1B",
+        },
+        gray: {
+          100: "#F0F2F5",
+          200: "#E4E7EC",
         },
       },
     },

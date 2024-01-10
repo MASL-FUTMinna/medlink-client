@@ -18,7 +18,9 @@ export default function Home() {
             and hello to seamless, convenient bookings.
           </p>
 
-          <Button>Book an appointment</Button>
+          <Link href="/appointments">
+            <Button>Book an appointment</Button>
+          </Link>
         </div>
         <div className="w-full md:w-1/2">
           <Image
