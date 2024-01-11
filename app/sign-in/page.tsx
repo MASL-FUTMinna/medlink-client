@@ -29,7 +29,7 @@ export default function Page() {
               <Button className="rounded-full justify-center">Next</Button>
               <p className="text-center">
                 No account yet?{" "}
-                <Link href="/" className=" text-accent-800">
+                <Link href="/sign-up" className=" text-accent-800">
                   Create one
                 </Link>
               </p>
