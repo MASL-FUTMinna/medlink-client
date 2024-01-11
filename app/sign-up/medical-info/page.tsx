@@ -43,7 +43,7 @@ export default function Page() {
                 className="p-4 rounded text-sm w-full"
               >
                 <option disabled selected>
-                  Select Genotype
+                  Select Blood Group
                 </option>
                 {bloodGroup.map((group, index) => (
                   <option key={index} value={group}>
