@@ -8,12 +8,12 @@ export default function ContactSection() {
         <h3 className="font-semibold text-3xl">
           Our Medical Team works effortlessly
         </h3>
-        <p className="font-medium">
+        <p className="font-medium text-justify">
           Effortlessly manage your appointments with our intuitive doctor&apos;s
           appointment system. Say goodbye to scheduling hassles and hello to
           seamless, convenient bookings
         </p>
-        <p className="font-medium">
+        <p className="font-medium md:mb-4 text-justify">
           Effortlessly manage your appointments with our intuitive doctor&apos;s
           appointment system. Say goodbye to scheduling hassles and hello to
           seamless, convenient bookings
@@ -35,9 +35,9 @@ export default function ContactSection() {
       <Image
         src="/assets/images/medical-team.png"
         alt="medical team"
-        width={400}
-        height={400}
-        className="w-full md:w-1/2"
+        width={500}
+        height={500}
+        className="w-full"
       />
     </section>
   );
