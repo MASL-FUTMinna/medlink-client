@@ -1,6 +1,7 @@
 import ContactForm from "@/components/ContactForm";
 import FAQ from "@/components/FAQ";
 import Button from "@/components/ui/Button";
+import Partners from "@/components/Partners";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -32,6 +33,7 @@ export default function Home() {
           />
         </div>
       </section>
+      <Partners />
       <section className="py-16 section flex flex-col gap-8 md:flex-row">
         <div className="flex flex-col gap-4">
           <h3 className="font-semibold text-neutral-900 text-3xl">
