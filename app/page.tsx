@@ -7,6 +7,7 @@ import ContactUs from "@/components/ContactUs";
 import BookAppointment from "@/components/BookAppointment";
 import Hero from "@/components/Hero";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import GetDiagnosis from "@/components/GetDiagnosis";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <Partners />
       <WhyChooseUs />
+      <GetDiagnosis />
       <ContactUs />
       <BookAppointment />
       <HealthNews />
