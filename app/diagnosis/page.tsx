@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import diagnosisBg from "@/public/assets/images/diagonsis.png";
 import diagnosisImg1 from "@/public/assets/images/diagnosis-1.png";
@@ -5,8 +6,14 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import MedicalQuestions from "@/components/diagnosis/questions";
 import MaxWidth from "@/components/MaxWidth";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+	const router = useRouter();
+
+	const goToAiChat = () => {
+		router.push("/chat");
+	};
 	return (
 		<main>
 			<header
@@ -43,7 +50,9 @@ export default function Page() {
 								matter most to you
 							</p>
 
-							<MedicalQuestions />
+							{/* <MedicalQuestions /> */}
+
+							<Button handleClick={goToAiChat}>Start Diagnosis</Button>
 						</div>
 					</div>
 				</section>
