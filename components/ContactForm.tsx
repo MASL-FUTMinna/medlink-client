@@ -3,7 +3,7 @@ import Button from "./ui/Button";
 
 const ContactForm = () => {
   return (
-    <section className="w-full section">
+    <section className="w-full section scroll-mt-20" id="contact">
       <div className="py-16 px-2 flex flex-col gap-8 items-center justify-center text-center bg-accent-100 rounded-3xl relative">
         <h3 className="text-3xl font-semibold z-[10]  ">Contact Us</h3>
         <p className="font-medium max-w-2xl">
