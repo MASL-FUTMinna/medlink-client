@@ -23,7 +23,7 @@ export default function Page() {
 			.subscribe((message) => {
 				setMessages((prev) => ({
 					...prev,
-					[message.id]: message,
+					[message.id as string]: message,
 				}));
 			});
 	}, []);
@@ -41,7 +41,7 @@ export default function Page() {
 		directLine.postActivity(message).subscribe((id) => {
 			setMessages((prev) => ({
 				...prev,
-				[id]: message,
+				[id as string]: message,
 			}));
 			setText("");
 		});
