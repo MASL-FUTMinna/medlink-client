@@ -11,11 +11,16 @@ const directLine = new DirectLine({
 	webSocket: true,
 });
 
+type UserType = {
+	name: string;
+	id: string;
+};
+
 export default function Page() {
 	const [text, setText] = useState("");
 	const [name, setName] = useState("");
 	const [messages, setMessages] = useState({});
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<UserType | null>(null);
 
 	useEffect(() => {
 		directLine.activity$
@@ -47,7 +52,7 @@ export default function Page() {
 		});
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		setUser({
 			id: uuidv4(),
