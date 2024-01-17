@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Activity, DirectLine } from "botframework-directlinejs";
+import { DirectLine } from "botframework-directlinejs";
 import Button from "@/components/ui/Button";
 import { FaArrowCircleRight, FaUserCircle } from "react-icons/fa";
 
@@ -43,7 +43,7 @@ export default function Page() {
 	const sendMessage = (e: React.FormEvent) => {
 		e.preventDefault();
 
-		const message: Activity = {
+		const message = {
 			from: user,
 			type: "message",
 			text: text,
