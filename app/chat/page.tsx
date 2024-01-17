@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { DirectLine } from "botframework-directlinejs";
+import { Activity, DirectLine } from "botframework-directlinejs";
 import Button from "@/components/ui/Button";
 import { FaArrowCircleRight, FaUserCircle } from "react-icons/fa";
 
@@ -14,6 +14,12 @@ const directLine = new DirectLine({
 type UserType = {
 	name: string;
 	id: string;
+};
+
+type MessageType = {
+	from: UserType;
+	type: string;
+	text: string;
 };
 
 export default function Page() {
@@ -34,10 +40,10 @@ export default function Page() {
 	}, []);
 
 	// Function to send a message through the WebSocket.
-	const sendMessage = (e) => {
+	const sendMessage = (e: React.FormEvent) => {
 		e.preventDefault();
 
-		const message = {
+		const message: Activity = {
 			from: user,
 			type: "message",
 			text: text,
