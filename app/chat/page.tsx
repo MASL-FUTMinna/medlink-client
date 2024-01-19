@@ -11,11 +11,22 @@ const directLine = new DirectLine({
 	webSocket: true,
 });
 
+type UserType = {
+	name: string;
+	id: string;
+};
+
+type MessageType = {
+	from: UserType;
+	type: string;
+	text: string;
+};
+
 export default function Page() {
 	const [text, setText] = useState("");
 	const [name, setName] = useState("");
 	const [messages, setMessages] = useState({});
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<UserType | null>(null);
 
 	useEffect(() => {
 		directLine.activity$
@@ -23,13 +34,13 @@ export default function Page() {
 			.subscribe((message) => {
 				setMessages((prev) => ({
 					...prev,
-					[message.id]: message,
+					[message.id as string]: message,
 				}));
 			});
 	}, []);
 
 	// Function to send a message through the WebSocket.
-	const sendMessage = (e) => {
+	const sendMessage = (e: React.FormEvent) => {
 		e.preventDefault();
 
 		const message = {
@@ -41,13 +52,13 @@ export default function Page() {
 		directLine.postActivity(message).subscribe((id) => {
 			setMessages((prev) => ({
 				...prev,
-				[id]: message,
+				[id as string]: message,
 			}));
 			setText("");
 		});
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		setUser({
 			id: uuidv4(),
