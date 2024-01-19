@@ -2,16 +2,32 @@ import Button from "@/components/ui/Button";
 import { PRACTITIONERS } from "@/constants/practitioner";
 import Image from "next/image";
 
-export default function Page({
+async function getData(id: string) {
+  try {
+    const res = await fetch(
+      `https://medlink-server-production.up.railway.app/practitioners/${id}`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch hospital data");
+    }
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export default async function Page({
   params,
 }: {
   params: { practitionerId: string };
 }) {
-  const practitioner = PRACTITIONERS.find(
-    (practitioner) => practitioner.id === params.practitionerId
-  );
 
-  if (!practitioner) {
+  console.log(params.practitionerId);
+  const data = await getData(params.practitionerId);
+
+  console.log(data)
+
+  if (!data) {
     return <p className="section">Practioner Not Found</p>;
   }
 
@@ -23,8 +39,8 @@ export default function Page({
 
       <section className="section flex flex-col gap-8 md:flex-row">
         <Image
-          src={practitioner.img}
-          alt={`Image of Doctor ${practitioner.name}`}
+          src={data.photoUrl}
+          alt={`Image of Doctor ${data.first_name}`}
           width={400}
           height={800}
           className="w-fit h-fit mx-auto md:w-full"
@@ -32,7 +48,7 @@ export default function Page({
 
         <section>
           <section className="flex flex-col gap-2">
-            <h2 className="text-2xl">Dr. {practitioner.name}</h2>
+            <h2 className="text-2xl">Dr. {data.last_name} {data.first_name}</h2>
             <div className="flex gap-2">
               <Image
                 src="/assets/icons/hospital.svg"
@@ -41,8 +57,8 @@ export default function Page({
                 height={20}
               />
               <p className="text-[#7A7A7A] text-xs">
-                {practitioner.profession} at{" "}
-                <span className="uppercase">{practitioner.hospital}</span>
+                {data.specialization} at{" "}
+                <span className="uppercase"></span>
               </p>
             </div>
             <p>

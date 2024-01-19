@@ -1,32 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { PractitionerProp } from "@/types/practitioner";
+import Link from "next/link";
 
-type Prop = {
-  id: string;
-  name: string;
-  hospital: string;
-  profession: string;
-  img: string;
-};
 
-const Practioner = ({ id, name, hospital, profession, img }: Prop) => {
-  const router = useRouter();
+const Practioner = ({ id, first_name, last_name, hospital_name, specialization, photoUrl }: PractitionerProp) => {
 
   return (
-    <li
+    <Link href={`/appointments/practitioner/${id}`}
       className="font-head cursor-pointer"
-      onClick={() => router.push(`/appointments/${id}`)}
     >
       <Image
-        src={img}
-        alt={`Headshot of ${name}`}
+        src={photoUrl}
+        alt={`Headshot of ${first_name}`}
         width={300}
         height={600}
         className="w-full"
       />
-      <h3>Dr. {name}</h3>
+      <h3>Dr. {last_name} {first_name}</h3>
       <div className="flex gap-2">
         <Image
           src="/assets/icons/hospital.svg"
@@ -35,10 +27,10 @@ const Practioner = ({ id, name, hospital, profession, img }: Prop) => {
           height={20}
         />
         <p className="text-[#7A7A7A] text-xs">
-          {profession} at <span className="uppercase">{hospital}</span>
+          {specialization} at <span className="uppercase">{hospital_name}</span>
         </p>
       </div>
-    </li>
+    </Link>
   );
 };
 

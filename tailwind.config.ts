@@ -10,6 +10,7 @@ const config: Config = {
 		extend: {
 			gridTemplateColumns: {
 				practitioners: "repeat(auto-fill, minmax(200px, 1fr))",
+				hospitals: "repeat(auto-fill, minmax(300px, 1fr))",
 			},
 			fontFamily: {
 				sans: ["var(--font-inter)"],

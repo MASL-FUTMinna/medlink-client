@@ -1,31 +1,27 @@
-'use client'
-import HospitalsList from "@/components/hospitals/HospitalsList";
-import Button from "@/components/ui/Button";
+import PractitionersList from "@/components/practitioners/PractitionersList";
 import Image from "next/image";
-import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
-
-export default function Page() {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
- 
-  function setSearchQuery(term: string) {
-    console.log(`Searching... ${term}`);
- 
-    const params = new URLSearchParams(searchParams);
-    if (term) {
-      params.set('query', term);
-    } else {
-      params.delete('query');
+async function getData(id: string) {
+  try {
+    const res = await fetch(
+      `https://medlink-server-production.up.railway.app/hospitals/${id}`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch hospital data");
     }
-    replace(`${pathname}?${params.toString()}`);
+    return res.json();
+  } catch (error) {
+    console.error(error);
   }
+}
 
-  function handleSearch(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+export default async function Page({ params }: { params: { hospitalId: string } }) {
+  const data = await getData(params.hospitalId);
+
+  if (!data) {
+    return <p className="section">Practioner Not Found</p>;
   }
-
+  
   return (
     <main>
       <section className="bg-accent-50 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] md:min-h-fit md:flex-row">
@@ -38,20 +34,6 @@ export default function Page() {
             doctor&apos;s appointment system. Say goodbye to scheduling hassles
             and hello to seamless, convenient bookings.
           </p>
-          <form onSubmit={handleSearch}>
-            <div className="flex gap-4">
-              <input
-                type="search"
-                placeholder="Search nearby hospitals"
-                className="px-4 rounded-full text-sm w-full"
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                }}
-                defaultValue={searchParams.get('query')?.toString()}
-              />
-              <Button type="submit" className="!rounded-full">Search</Button>
-            </div>
-          </form>
         </div>
         <Image
           src="/assets/images/search-hero.png"
@@ -63,7 +45,9 @@ export default function Page() {
       </section>
       <section className="section py-16">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <h3 className="text-zinc-900 text-[40px] font-semibold">Hospitals</h3>
+          <h3 className="text-zinc-900 text-[40px] font-semibold">
+            Practioners in {data.name}
+          </h3>
           <ul className="flex gap-6 font-medium text-[#667185]">
             <li className="flex gap-1">
               <Image
@@ -94,7 +78,7 @@ export default function Page() {
             </li>
           </ul>
         </div>
-        <HospitalsList />
+        <PractitionersList data={data} />
       </section>
     </main>
   );
