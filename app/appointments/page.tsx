@@ -1,31 +1,23 @@
-'use client'
 import HospitalsList from "@/components/hospitals/HospitalsList";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
-import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
-
-export default function Page() {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
- 
-  function setSearchQuery(term: string) {
-    console.log(`Searching... ${term}`);
- 
-    const params = new URLSearchParams(searchParams);
-    if (term) {
-      params.set('query', term);
-    } else {
-      params.delete('query');
+async function getData() {
+  try {
+    const res = await fetch(
+      `https://medlink-server-production.up.railway.app/hospitals/`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch hospital data");
     }
-    replace(`${pathname}?${params.toString()}`);
+    return res.json();
+  } catch (error) {
+    console.error(error);
   }
+}
 
-  function handleSearch(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-  }
-
+export default async function Page() {
+  const data = await getData()
   return (
     <main>
       <section className="bg-accent-50 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] md:min-h-fit md:flex-row">
@@ -38,16 +30,12 @@ export default function Page() {
             doctor&apos;s appointment system. Say goodbye to scheduling hassles
             and hello to seamless, convenient bookings.
           </p>
-          <form onSubmit={handleSearch}>
+          <form>
             <div className="flex gap-4">
               <input
                 type="search"
                 placeholder="Search nearby hospitals"
                 className="px-4 rounded-full text-sm w-full"
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                }}
-                defaultValue={searchParams.get('query')?.toString()}
               />
               <Button type="submit" className="!rounded-full">Search</Button>
             </div>
@@ -94,7 +82,7 @@ export default function Page() {
             </li>
           </ul>
         </div>
-        <HospitalsList />
+        <HospitalsList data={data} />
       </section>
     </main>
   );

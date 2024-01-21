@@ -1,6 +1,7 @@
-import Button from "@/components/ui/Button";
-import { PRACTITIONERS } from "@/constants/practitioner";
+import SelectAppointment from "@/components/practitioners/SelectAppointment";
+import AppointmentButtons from "@/components/practitioners/AppointmentButtons";
 import Image from "next/image";
+
 
 async function getData(id: string) {
   try {
@@ -16,16 +17,27 @@ async function getData(id: string) {
   }
 }
 
+async function getAvailableSchedule(id: string) {
+  try {
+    const res = await fetch(
+      `https://medlink-server-production.up.railway.app/schedules/${id}?timeZone=Africa/Lagos`
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch hospital data");
+    }
+    return res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export default async function Page({
   params,
 }: {
   params: { practitionerId: string };
 }) {
-
-  console.log(params.practitionerId);
   const data = await getData(params.practitionerId);
-
-  console.log(data)
+  const scheduleData = await getAvailableSchedule(params.practitionerId);
 
   if (!data) {
     return <p className="section">Practioner Not Found</p>;
@@ -48,7 +60,9 @@ export default async function Page({
 
         <section>
           <section className="flex flex-col gap-2">
-            <h2 className="text-2xl">Dr. {data.last_name} {data.first_name}</h2>
+            <h2 className="text-2xl">
+              Dr. {data.last_name} {data.first_name}
+            </h2>
             <div className="flex gap-2">
               <Image
                 src="/assets/icons/hospital.svg"
@@ -57,8 +71,7 @@ export default async function Page({
                 height={20}
               />
               <p className="text-[#7A7A7A] text-xs">
-                {data.specialization} at{" "}
-                <span className="uppercase"></span>
+                {data.specialization} at <span className="uppercase"></span>
               </p>
             </div>
             <p>
@@ -90,41 +103,8 @@ export default async function Page({
             </p>
           </section>
           <section className="py-4 px-4 mt-8 flex flex-col gap-4 border border-gray-200">
-            <h3>Select Date</h3>
-
-            <input type="date" name="date" id="date" className="py-2" />
-          </section>
-          <section className="flex flex-col gap-4 py-8">
-            <h3>Available Time</h3>
-
-            <div className="flex gap-8">
-              <div className="py-3 px-6 border border-gray-100 rounded-md">
-                <h3>10:00 am</h3>
-              </div>
-              <div className="py-2 px-4 border border-gray-100 rounded-md">
-                <h3>10:00 am</h3>
-              </div>
-              <div className="py-2 px-4 border border-gray-100 rounded-md">
-                <h3>10:00 am</h3>
-              </div>
-            </div>
-
-            <div className="flex gap-8">
-              <Button className="!px-12">Next</Button>
-              <Button
-                leftIcon={
-                  <Image
-                    src="/assets/icons/cancel.svg"
-                    alt="Cancel icon"
-                    width={20}
-                    height={20}
-                  />
-                }
-                className="bg-transparent !text-[#F44336] underline underline-offset-2"
-              >
-                Cancel
-              </Button>
-            </div>
+           {scheduleData && <SelectAppointment scheduleData={scheduleData} />}
+           <AppointmentButtons />
           </section>
         </section>
       </section>
