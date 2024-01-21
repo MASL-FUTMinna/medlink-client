@@ -3,7 +3,7 @@ module.exports = {
 	typescript: {
 		ignoreBuildErrors: true,
 	},
-    images: {
+  images: {
         remotePatterns: [
           {
             protocol: 'https',
