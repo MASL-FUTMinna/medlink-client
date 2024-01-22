@@ -21,7 +21,7 @@ const Header = () => {
               <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/appointments">Appointments</Link>
+              <Link href="/appointments">Book Appointment</Link>
             </li>
             <li>
               <a href="/#faq">FAQ</a>
@@ -33,7 +33,7 @@ const Header = () => {
 
           <div className="flex gap-2 items-center font-semibold text-accent-800">
             {token ? (
-              <Link href="/appointments/history">Booked Appointments</Link>
+              <Link href="/appointments/history">Appointments History</Link>
             ) : (
               <>
                 <Image

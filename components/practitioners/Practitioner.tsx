@@ -19,17 +19,18 @@ const Practioner = ({ id, first_name, last_name, hospital_name, specialization, 
         className="w-full"
       />
       <h3>Dr. {last_name} {first_name}</h3>
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center">
         <Image
           src="/assets/icons/hospital.svg"
           alt="Hospital building icon"
           width={20}
           height={20}
         />
-        <p className="text-[#7A7A7A] text-xs">
-          {specialization} at <span className="uppercase">{hospital_name}</span>
+        <p className="text-[#7A7A7A] text-xs font-light">
+          {specialization}
         </p>
       </div>
+      <p className="text-[#7A7A7A] text-xs font-light capitalize">{hospital_name}</p>
     </Link>
   );
 };

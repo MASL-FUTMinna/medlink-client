@@ -86,27 +86,11 @@ export default async function Page({
             <hr className="mt-8" />
           </section>
           <section className="flex flex-col gap-2">
-            <h2>Experience</h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Perspiciatis distinctio ipsa, et quo, corrupti unde maxime
-              necessitatibus ut, possimus laudantium dolores quod provident.
-            </p>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Perspiciatis distinctio ipsa, et quo, corrupti unde maxime
-              necessitatibus ut, possimus laudantium dolores quod provident.
-              Soluta iure veritatis quaerat pariatur optio. Enim!
-            </p>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Perspiciatis distinctio ipsa, et quo, corrupti unde maxime
-              necessitatibus ut, possimus laudantium dolores quod provident.
-              Soluta iure veritatis quaerat pariatur optio. Enim!
-            </p>
+            <h2>Bio</h2>
+            <p>{data.bio}</p>
           </section>
           <section className="py-4 px-4 mt-8 flex flex-col gap-4 border border-gray-200">
-           <SelectAppointment scheduleData={scheduleData} token={token.value} id={params.practitionerId}/>
+           <SelectAppointment scheduleData={scheduleData} token={token} id={params.practitionerId}/>
           </section>
         </section>
       </section>
