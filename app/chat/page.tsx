@@ -93,8 +93,8 @@ export default function Page() {
 
 	if (!user) {
 		return (
-			<div className=" h-[80vh] flex justify-center items-center p-4 bg-blue-50">
-				<div className=" bg-white w-full p-4 space-y-4 max-w-3xl mx-auto rounded-xl lg:p-8 lg:space-y-6">
+			<div className=" h-[80vh] flex justify-center items-center p-4 ">
+				<div className=" bg-blue-50 w-full p-4 space-y-4 max-w-3xl mx-auto rounded-xl lg:p-8 lg:space-y-6">
 					<h2 className=" text-xl font-semibold text-center">Welcome to Medlink AI Chatbot</h2>
 					<p className=" md:text-lg text-center">
 						Your personalized chatbot for all your medical and health related questions. <br />
@@ -119,7 +119,7 @@ export default function Page() {
 	}
 
 	return (
-		<main className=" p-4  bg-blue-100  ">
+		<main className=" p-4    ">
 			<section className=" max-w-4xl mx-auto flex flex-col gap-4">
 				<div className=" bg-white p-4">
 					<p className="text-center font-semibold text-lg rounded-lg">
@@ -137,20 +137,20 @@ export default function Page() {
 								// Comparing the numeric parts
 								return numA - numB;
 							})
-							.map((id) => {
+							.map((id, index) => {
 								const message = messages[id];
 								return (
 									<>
 										{message.from.id === user.id ? (
-											<div className=" flex justify-end items-center w-full  ">
+											<div className=" flex justify-end items-center w-full  " key={index}>
 												<div className=" bg-primary text-white p-3 rounded-md max-w-[80%]">
 													<h4>{message.from.name}</h4>
 													<p className="text-white">{message.text}</p>
 												</div>
 											</div>
 										) : (
-											<div className=" ">
-												<div className=" bg-white  p-3 rounded-md max-w-[80%] space-y-2">
+											<div className=" " key={index}>
+												<div className=" bg-blue-100 p-3 rounded-md max-w-[80%] space-y-2">
 													<h4>Medlink AI</h4>
 													<p
 														className=""
@@ -170,7 +170,7 @@ export default function Page() {
 							})}
 					</div>
 				</div>
-				<form className="  bg-white p-2 flex items-center space-x-4  rounded-lg" onSubmit={sendMessage}>
+				<form className="  bg-gray-100 p-2 flex items-center space-x-4  rounded-lg" onSubmit={sendMessage}>
 					<input
 						type="search"
 						required
