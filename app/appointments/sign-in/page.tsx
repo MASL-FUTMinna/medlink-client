@@ -50,7 +50,7 @@ export default function Page() {
       }
 
       const data = await response.json();
-      setSuccessMessage(data.message);
+      setSuccessMessage("Logged In Sucessfully");
       setIsLoading(false)
       setFormData(initialForm);
       cookieSetter(data.access_token)

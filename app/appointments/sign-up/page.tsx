@@ -54,7 +54,8 @@ export default function Page() {
         console.error('Error:', errorData.message);
       }
       const data = await response.json();
-      setSuccessMessage(data.message);
+      console.log('Success:', data);
+      setSuccessMessage("Account Created Sucessfully");
       setIsLoading(false)
       setFormData(initialForm);
       router.push("/appointments/sign-in");
@@ -93,7 +94,7 @@ export default function Page() {
                 value={formData.lastName}
                 name="lastName"
                 onChange={handleInput}
-                placeholder="Enter East Name"
+                placeholder="Enter Last Name"
                 className="p-6 text-sm w-full bg-white rounded-2xl border border-stone-300 focus:outline-none"
               />
               <label htmlFor="email" className="text-zinc-900 text-[13px] font-medium leading-snug">Email</label>
@@ -119,7 +120,7 @@ export default function Page() {
                 className="p-6 text-sm w-full bg-white rounded-2xl border border-stone-300 focus:outline-none"
               />
               <Button className="justify-center p-6 bg-indigo-500 rounded shadow" type="submit" disabled={isLoading}>{isLoading ? "Submitting" : "Submit"}</Button>
-              {successMessage && <p className="text-green-500 text-xl font-medium leading-snug">{successMessage}</p>}
+              {successMessage && <p className="text-green-500 text-2xl font-medium leading-snug">{successMessage}</p>}
               <p className="text-center text-zinc-900 text-sm font-normal leading-snug">
                 Already have an account?{" "}
                 <Link href="/appointments/sign-in" className=" text-indigo-800 text-sm font-semibold underline leading-snug">
