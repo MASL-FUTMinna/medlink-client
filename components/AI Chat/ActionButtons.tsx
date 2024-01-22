@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaArrowCircleRight } from "react-icons/fa";
 
-const ActionMessages = ({ attachments, sendMessage }) => {
+const ActionMessages = ({ attachments, sendMessage, isLoading }) => {
 	const [selectedChoices, setSelectedChoices] = useState([]);
 
 	const handleButtonClick = (title, value) => {
@@ -39,6 +39,7 @@ const ActionMessages = ({ attachments, sendMessage }) => {
 					className=" block w-full border border-blue-700 py-2 font-medium bg-white text-blue-800 text-sm rounded-md "
 					key={index}
 					onClick={() => handleButtonClick(button.title, button.value)}
+					disabled={isLoading}
 				>
 					{button.title}
 				</button>
@@ -72,6 +73,7 @@ const ActionMessages = ({ attachments, sendMessage }) => {
 
 			<button
 				onClick={handleSendMultipleChoice}
+				disabled={isLoading}
 				className="flex justify-center items-center w-full border border-blue-700 py-2 font-medium   text-sm rounded-md bg-blue-800 text-white"
 			>
 				Continue <FaArrowCircleRight size={28} className=" ml-2" />
