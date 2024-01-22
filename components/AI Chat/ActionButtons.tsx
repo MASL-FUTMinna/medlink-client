@@ -36,7 +36,7 @@ const ActionMessages = ({ attachments, sendMessage }) => {
 		<div className=" space-y-3">
 			{content.buttons.map((button, index) => (
 				<button
-					className=" block w-full border border-blue-700 py-2 font-medium text-blue-800 text-sm rounded-md "
+					className=" block w-full border border-blue-700 py-2 font-medium bg-white text-blue-800 text-sm rounded-md "
 					key={index}
 					onClick={() => handleButtonClick(button.title, button.value)}
 				>
@@ -56,10 +56,10 @@ const ActionMessages = ({ attachments, sendMessage }) => {
 								<button
 									key={j}
 									onClick={() => handleChoiceClick(choice.title, choice.value)}
-									className={` block w-full border border-blue-700 py-2 font-medium  text-sm rounded-md ${
+									className={` block w-full border border-blue-700 py-2 font-medium   text-sm rounded-md ${
 										selectedChoices.some((selectedChoice) => selectedChoice.value === choice.value)
-											? "bg-blue-200 text-blue-900"
-											: "text-blue-800"
+											? "bg-blue-300 text-blue-900"
+											: "bg-white text-blue-800"
 									}`}
 								>
 									{choice.title}
@@ -72,7 +72,7 @@ const ActionMessages = ({ attachments, sendMessage }) => {
 
 			<button
 				onClick={handleSendMultipleChoice}
-				className="flex justify-center items-center w-full border border-blue-700 py-2 font-medium  text-sm rounded-md bg-blue-800 text-white"
+				className="flex justify-center items-center w-full border border-blue-700 py-2 font-medium   text-sm rounded-md bg-blue-800 text-white"
 			>
 				Continue <FaArrowCircleRight size={28} className=" ml-2" />
 			</button>
