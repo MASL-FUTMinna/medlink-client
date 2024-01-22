@@ -37,18 +37,16 @@ const Header = () => {
 
           <div className="flex gap-2 items-center font-semibold text-accent-800">
             {token ? (
-              <Link href="/appointments/history">Booked Appoiments</Link>
+              <Link href="/appointments/history">Booked Appointments</Link>
             ) : (
               <>
-                <Link href="/appointments/sign-in/">
-                  <Image
-                    src="/assets/icons/user.svg"
-                    alt="User icon"
-                    width={25}
-                    height={25}
-                  />
-                  Sign in
-                </Link>
+                <Image
+                  src="/assets/icons/user.svg"
+                  alt="User icon"
+                  width={25}
+                  height={25}
+                />
+                <Link href="/appointments/sign-in/">Sign in</Link>
               </>
             )}
           </div>
