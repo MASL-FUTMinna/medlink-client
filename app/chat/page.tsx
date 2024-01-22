@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { DirectLine } from "botframework-directlinejs";
 import Button from "@/components/ui/Button";
 import { FaArrowCircleRight, FaUserCircle } from "react-icons/fa";
+import ActionMessages from "@/components/AI Chat/ActionButtons";
 
 const directLine = new DirectLine({
 	secret: process.env.NEXT_PUBLIC_CHATBOT_API_KEY,
@@ -27,6 +28,7 @@ export default function Page() {
 	const [name, setName] = useState("");
 	const [messages, setMessages] = useState({});
 	const [user, setUser] = useState<UserType | null>(null);
+	const messagesContainerRef = useRef(null);
 
 	useEffect(() => {
 		directLine.activity$
@@ -58,6 +60,22 @@ export default function Page() {
 		});
 	};
 
+	const handleSendMessage = (text: string, value: string) => {
+		const message = {
+			from: user,
+			type: "message",
+			text: value,
+		};
+
+		directLine.postActivity(message).subscribe((id) => {
+			setMessages((prev) => ({
+				...prev,
+				[id as string]: { ...message, text: text },
+			}));
+			setText("");
+		});
+	};
+
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		setUser({
@@ -65,6 +83,13 @@ export default function Page() {
 			name,
 		});
 	};
+
+	useEffect(() => {
+		// Scroll to the bottom when messages change
+		if (messagesContainerRef.current) {
+			messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+		}
+	}, [messages]);
 
 	if (!user) {
 		return (
@@ -101,7 +126,7 @@ export default function Page() {
 						<FaUserCircle size={28} className=" inline mr-2" /> Hi, {user?.name || "John Doe"}
 					</p>
 				</div>
-				<div className=" h-[70vh]   flex flex-col justify-end ">
+				<div className=" h-[70vh]   flex flex-col justify-end " ref={messagesContainerRef}>
 					<div className=" overflow-y-auto gap-4 flex flex-col">
 						{Object.keys(messages)
 							.sort((a, b) => {
@@ -125,14 +150,18 @@ export default function Page() {
 											</div>
 										) : (
 											<div className=" ">
-												<div className=" bg-white  p-3 rounded-md max-w-[80%]">
+												<div className=" bg-white  p-3 rounded-md max-w-[80%] space-y-2">
 													<h4>Medlink AI</h4>
 													<p
 														className=""
 														dangerouslySetInnerHTML={{
-															__html: message.speak.replace(/\n/g, "<br>").replace(/<break\/>/g, "<br>"),
+															__html: message?.text.replace(/\n/g, "<br>").replace(/<break\/>/g, "<br>"),
 														}}
 													></p>
+
+													{message.attachments && (
+														<ActionMessages attachments={message.attachments} sendMessage={handleSendMessage} />
+													)}
 												</div>
 											</div>
 										)}
