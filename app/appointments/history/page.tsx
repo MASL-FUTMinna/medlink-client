@@ -49,18 +49,18 @@ export default function Page() {
   console.log(data);
   return (
     <main>
-      <section className="px-[150px] py-12 bg-slate-50">
+      <section className="section py-12 bg-slate-50">
         <p className=" text-black text-4xl font-semibold">Appointments</p>
       </section>
-      <section className="mt-10 grid  md:grid-cols-2 section">
+      <section className="mt-10 grid  md:grid-cols-2 gap-10 section">
         {data.map((appointment) => (
-          <div key={appointment.id} className="flex items-center gap-8">
+          <div key={appointment.id} className="flex items-center flex-col sm:flex-row gap-8 border-b border-gray-200 pb-5">
             <Image
               src={appointment.practitioner.photoUrl}
               alt={`Image of Doctor ${appointment.practitioner.first_name}`}
               width={140}
               height={200}
-              className="l"
+              className="rounded-lg"
             />
             <div className="flex flex-col gap-4">
               <h4 className="text-black text-[17px] font-normal">
