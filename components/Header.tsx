@@ -6,6 +6,7 @@ const Header = () => {
   const cookieStore = cookies();
   const token = cookieStore.get("token");
 
+
   return (
     <header className="sticky top-0 backdrop-blur-xl z-50">
       <nav className="section w-full flex justify-between items-center">
@@ -16,20 +17,23 @@ const Header = () => {
         </h2>
 
         <div className="flex justify-end gap-20 font-head">
-          <ul className="gap-8 hidden md:flex">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/appointments">Appointments</Link>
-            </li>
-            <li>
-              <a href="/#faq">FAQ</a>
-            </li>
-            <li>
-              <a href="/#contact">Contact</a>
-            </li>
-          </ul>
+					<ul className="gap-8 hidden md:flex">
+						<li>
+							<Link href="/">Home</Link>
+						</li>
+						<li>
+							<Link href="/appointments">Appointments</Link>
+						</li>
+						<li>
+							<a href="/#faq">FAQ</a>
+						</li>
+						<li>
+							<a href="/#contact">Contact</a>
+						</li>
+						<li>
+							<a href="/diagnosis">AI Diagnosis</a>
+						</li>
+					</ul>
 
           <div className="flex gap-2 items-center font-semibold text-accent-800">
             {token ? (
