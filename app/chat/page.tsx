@@ -6,6 +6,7 @@ import { DirectLine } from "botframework-directlinejs";
 import Button from "@/components/ui/Button";
 import { FaArrowCircleRight, FaUserCircle } from "react-icons/fa";
 import ActionMessages from "@/components/AI Chat/ActionButtons";
+import { BeatLoader } from "react-spinners";
 
 const directLine = new DirectLine({
 	secret: process.env.NEXT_PUBLIC_CHATBOT_API_KEY,
@@ -28,6 +29,7 @@ export default function Page() {
 	const [name, setName] = useState("");
 	const [messages, setMessages] = useState({});
 	const [user, setUser] = useState<UserType | null>(null);
+	const [isLoading, setIsLoading] = useState(false);
 	const messagesContainerRef = useRef(null);
 
 	useEffect(() => {
@@ -38,6 +40,8 @@ export default function Page() {
 					...prev,
 					[message.id as string]: message,
 				}));
+
+				setIsLoading(false);
 			});
 	}, []);
 
@@ -50,6 +54,8 @@ export default function Page() {
 			type: "message",
 			text: text,
 		};
+
+		setIsLoading(true);
 
 		directLine.postActivity(message).subscribe((id) => {
 			setMessages((prev) => ({
@@ -66,6 +72,8 @@ export default function Page() {
 			type: "message",
 			text: value,
 		};
+
+		setIsLoading(true);
 
 		directLine.postActivity(message).subscribe((id) => {
 			setMessages((prev) => ({
@@ -126,8 +134,8 @@ export default function Page() {
 						<FaUserCircle size={28} className=" inline mr-2" /> Hi, {user?.name || "John Doe"}
 					</p>
 				</div>
-				<div className=" h-[70vh]   flex flex-col justify-end " ref={messagesContainerRef}>
-					<div className=" overflow-y-auto gap-4 flex flex-col">
+				<div className=" h-[70vh]   flex flex-col justify-end ">
+					<div className=" overflow-y-auto gap-4 flex flex-col" ref={messagesContainerRef}>
 						{Object.keys(messages)
 							.sort((a, b) => {
 								// Extracting the numeric part after the "|"
@@ -160,7 +168,11 @@ export default function Page() {
 													></p>
 
 													{message.attachments && (
-														<ActionMessages attachments={message.attachments} sendMessage={handleSendMessage} />
+														<ActionMessages
+															attachments={message.attachments}
+															sendMessage={handleSendMessage}
+															isLoading={isLoading}
+														/>
 													)}
 												</div>
 											</div>
@@ -168,6 +180,11 @@ export default function Page() {
 									</>
 								);
 							})}
+					</div>
+
+					{/* loading spinner */}
+					<div className=" flex justify-center  items-center p-6">
+						<BeatLoader color="#3B82F6" loading={isLoading} size={15} />
 					</div>
 				</div>
 				<form className="  bg-gray-100 p-2 flex items-center space-x-4  rounded-lg" onSubmit={sendMessage}>
@@ -179,7 +196,7 @@ export default function Page() {
 						value={text}
 						onChange={(e) => setText(e.target.value)}
 					/>
-					<button>
+					<button type="submit" disabled={isLoading}>
 						<FaArrowCircleRight size={28} />
 					</button>
 				</form>
