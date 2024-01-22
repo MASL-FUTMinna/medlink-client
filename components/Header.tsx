@@ -21,7 +21,7 @@ const Header = () => {
 
 					<div className="flex gap-2 items-center font-semibold text-accent-800">
 						<Image src="/assets/icons/user.svg" alt="User icon" width={25} height={25} />
-						<Link href="/sign-in">Sign in</Link>
+						<Link href="/appointments/sign-in/">Sign in</Link>
 					</div>
 				</div>
 			</nav>
