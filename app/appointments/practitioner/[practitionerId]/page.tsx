@@ -1,6 +1,6 @@
 import SelectAppointment from "@/components/practitioners/SelectAppointment";
-import AppointmentButtons from "@/components/practitioners/AppointmentButtons";
 import Image from "next/image";
+import { cookies } from 'next/headers'
 
 
 async function getData(id: string) {
@@ -38,6 +38,9 @@ export default async function Page({
 }) {
   const data = await getData(params.practitionerId);
   const scheduleData = await getAvailableSchedule(params.practitionerId);
+
+  const cookieStore = cookies()
+  const token = cookieStore.get('token')
 
   if (!data) {
     return <p className="section">Practioner Not Found</p>;
@@ -103,8 +106,7 @@ export default async function Page({
             </p>
           </section>
           <section className="py-4 px-4 mt-8 flex flex-col gap-4 border border-gray-200">
-           {scheduleData && <SelectAppointment scheduleData={scheduleData} />}
-           <AppointmentButtons />
+           <SelectAppointment scheduleData={scheduleData} token={token.value} id={params.practitionerId}/>
           </section>
         </section>
       </section>

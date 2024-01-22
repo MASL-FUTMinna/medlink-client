@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { cookieSetter } from "@/utils/cookieSetter";
 
 interface FormData {
   email: string;
@@ -52,6 +53,7 @@ export default function Page() {
       setSuccessMessage(data.message);
       setIsLoading(false)
       setFormData(initialForm);
+      cookieSetter(data.access_token)
       console.log('Success:', data);
     } catch (error) {
       console.error('Error:', error);
@@ -66,8 +68,9 @@ export default function Page() {
             Welcome Back
           </h1>
           <p className="text-center text-zinc-900 text-base font-normal leading-snug tracking-tight">Complete details to sign in</p>
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-4 mt-16">
+          <form onSubmit={handleSubmit} className="mt-16">
+            {errors && <p className="text-red-500 text-xl font-medium leading-snug">{errors}</p>}
+            <div className="flex flex-col gap-4">
               <label htmlFor="email" className="text-zinc-900 text-[13px] font-medium leading-snug">Email</label>
               <input
                 type="email"
@@ -91,6 +94,7 @@ export default function Page() {
                 className="p-6 text-sm w-full bg-white rounded-2xl border border-stone-300 focus:outline-none"
               />
               <Button className="justify-center p-6 bg-indigo-500 rounded shadow" type="submit" disabled={isLoading}>Submit</Button>
+              {successMessage && <p className="text-green-500 text-xl font-medium leading-snug">{successMessage}</p>}
               <p className="text-center text-zinc-900 text-sm font-normal leading-snug">
                 Don’t have an account yet?{" "}
                 <Link href="/appointments/sign-up" className=" text-indigo-800 text-sm font-semibold underline leading-snug">
