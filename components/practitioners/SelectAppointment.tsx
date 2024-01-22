@@ -109,6 +109,7 @@ const SelectAppointment = ({
       );
       if (!scheduleAppointment.ok) {
         const errorData = await scheduleAppointment.json();
+        setErrors(errorData.message);
         console.log({ errorData });
       }
       const scheduleResponse = await scheduleAppointment.json();
