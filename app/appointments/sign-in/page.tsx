@@ -54,6 +54,8 @@ export default function Page() {
       setIsLoading(false)
       setFormData(initialForm);
       cookieSetter(data.access_token)
+      localStorage.setItem('userId', data.id);
+      router.push("/appointments");
       console.log('Success:', data);
     } catch (error) {
       console.error('Error:', error);
@@ -93,7 +95,7 @@ export default function Page() {
                 placeholder="Enter Password"
                 className="p-6 text-sm w-full bg-white rounded-2xl border border-stone-300 focus:outline-none"
               />
-              <Button className="justify-center p-6 bg-indigo-500 rounded shadow" type="submit" disabled={isLoading}>Submit</Button>
+              <Button className="justify-center p-6 bg-indigo-500 rounded shadow" type="submit" disabled={isLoading}>{isLoading ? "Submitting" : "Submit"}</Button>
               {successMessage && <p className="text-green-500 text-xl font-medium leading-snug">{successMessage}</p>}
               <p className="text-center text-zinc-900 text-sm font-normal leading-snug">
                 Don’t have an account yet?{" "}
