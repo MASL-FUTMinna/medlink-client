@@ -4,26 +4,40 @@ import Button from "./ui/Button";
 const FAQ = () => {
   const FAQ_LIST = [
     {
-      question: "What is this question for?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, ratione! Minus sit illo laboriosam sint tempore quasi vel corrupti? Doloribus dolorem ut debitis ipsa a. Neque accusamus molestias accusantium tempore.",
+      question: "What is Medlink about?",
+      answer: "Medlink is a platform that focuses on facilitating remote healthcare services, appointment scheduling, and preliminary health assessments. It does not replace the need for in-person medical examinations in emergency situations.",
     },
     {
-      question: "What is this question for?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, ratione! Minus sit illo laboriosam sint tempore quasi vel corrupti? Doloribus dolorem ut debitis ipsa a. Neque accusamus molestias accusantium tempore.",
+      question: "What unique services does Medlink offer?",
+      services: [
+        { description: "Remote Appointment Booking: We made a system that allows users to schedule appointments with doctors from the comfort of their homes, eliminating the need for physical visits." },
+        { description: "Symptom-Based Doctor Recommendation: We Implemented an intelligent algorithm (utilizing AI) that analyzes user-provided symptoms and family health history to suggest a list of doctors with relevant specializations." },
+        { description: "AI-Powered Diagnosis: We Integrated of artificial intelligence to perform preliminary health assessments based on user-inputted information, providing users with potential diagnoses for their health challenges." },
+      ],
     },
     {
-      question: "What is this question for?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, ratione! Minus sit illo laboriosam sint tempore quasi vel corrupti? Doloribus dolorem ut debitis ipsa a. Neque accusamus molestias accusantium tempore.",
+      question: "What is AI Diagnosis?",
+      answer: "AI-Powered Diagnosis: Are you confused by the symptoms you feel? Our AI Diagnosis is the Integration of artificial intelligence to perform preliminary health assessments based on user-inputted information, providing users with potential diagnoses for their health challenges.",
     },
     {
-      question: "What is this question for?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, ratione! Minus sit illo laboriosam sint tempore quasi vel corrupti? Doloribus dolorem ut debitis ipsa a. Neque accusamus molestias accusantium tempore.",
+      question: "How do I book an appointment?",
+      services: [
+        {
+          description: "Start by clicking the 'book an appointment' button",
+        },
+        {
+          description: "Search for a nearby hospital or choose one from our recommendations",
+        },
+        {
+          description: "Choose a practitioner of choice based on their field of specialization",
+        },
+        {
+          description: "You have your booking card ready",
+        },
+      ],
     },
   ];
+
   return (
     <section className="section py-16 flex flex-col gap-8 md:flex-row scroll-mt-10" id="faq">
       <section className="flex flex-col gap-4 items-start">

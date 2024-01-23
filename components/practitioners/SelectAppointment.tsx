@@ -104,6 +104,8 @@ const SelectAppointment = ({
         time: selectedTime,
         timeZone: "Africa/lagos",
       };
+
+      console.log(scheduleInfo)
       const scheduleAppointment = await fetch(
         "https://medlink-server-production.up.railway.app/appointments",
         {

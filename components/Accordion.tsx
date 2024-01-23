@@ -5,10 +5,13 @@ import { useState } from "react";
 
 type Prop = {
   question: string;
-  answer: string;
+  answer?: string;
+  services?: {
+    description: string;
+  }[];
 };
 
-const Accordion = ({ question, answer }: Prop) => {
+const Accordion = ({ question, answer, services }: Prop) => {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <section
@@ -31,10 +34,20 @@ const Accordion = ({ question, answer }: Prop) => {
       </div>
       <div
         className={`overflow-hidden ${
-          isExpanded ? " max-h-[100px]" : "max-h-[0px]"
+          isExpanded ? " max-h-[400px]" : "max-h-[0px]"
         } duration-300`}
       >
-        <p className="font-medium pb-4">{answer}</p>
+        
+        {answer &&<p className="font-medium pb-4">{answer}</p>}
+          {services && (
+            <ul className="list-disc list-inside font-medium pb-4">
+              {services.map((service, index) => (
+                <li key={index} className="font-medium text-sm">
+                  {service.description}
+                </li>
+              ))}
+            </ul>
+          )}
       </div>
     </section>
   );

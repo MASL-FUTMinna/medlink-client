@@ -52,7 +52,7 @@ export default async function Page() {
       <section className="section py-16">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <h3 className="text-zinc-900 text-[40px] font-semibold">Hospitals</h3>
-          <ul className="flex gap-6 font-medium text-[#667185]">
+          {/* <ul className="flex gap-6 font-medium text-[#667185]">
             <li className="flex gap-1">
               <Image
                 src="/assets/icons/filter.svg"
@@ -80,7 +80,7 @@ export default async function Page() {
               />
               opticians
             </li>
-          </ul>
+          </ul> */}
         </div>
         <HospitalsList data={data} />
       </section>
