@@ -11,7 +11,7 @@ const Hospital = ({ id, name, address, city, state }: HospitalProps) => {
       href={`/appointments/${id}`}
     >
       <Image
-        src={"/assets/images/Health.png"}
+        src={"/assets/images/health.png"}
         alt={`${name} Hospital`}
         width={300}
         height={600}
