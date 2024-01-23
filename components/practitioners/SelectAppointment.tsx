@@ -58,6 +58,7 @@ const SelectAppointment = ({
     setSelectedDate(event.target.value);
   };
   console.log(token)
+  console.log(id)
 
   const handleSubmit = async () => {
     setErrors(null);
@@ -97,8 +98,9 @@ const SelectAppointment = ({
       const year = parsedDate.getFullYear();
       const formattedDate = `${day}-${month}-${year}`;
 
+      console.log({ data });
       const scheduleInfo = {
-        userId: `${data.user.id}`,
+        userId: `${data.id}`,
         practitionerId: id,
         date: formattedDate,
         time: selectedTime,

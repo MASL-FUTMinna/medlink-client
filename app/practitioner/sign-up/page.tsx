@@ -56,6 +56,16 @@ export default function Page() {
     console.log(formData);
     setIsLoading(true);
     try {
+
+      const formdata = new FormData();
+
+      console.log(formdata)
+      // Append all data to FormData
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value !== null) {
+          formdata.append(key, value);
+        }
+      });
       const response = await fetch(
         "https://medlink-server-production.up.railway.app/practitioners",
         {
@@ -63,7 +73,7 @@ export default function Page() {
           headers: {
             "Content-Type": "application/json; charset=utf-8",
           },
-          body: JSON.stringify(formData),
+          body: formdata,
         }
       );
 
