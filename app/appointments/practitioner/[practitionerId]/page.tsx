@@ -66,7 +66,7 @@ export default async function Page({
             <h2 className="text-2xl">
               Dr. {data.last_name} {data.first_name}
             </h2>
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center leading-none">
               <Image
                 src="/assets/icons/hospital.svg"
                 alt="Hospital building icon"
@@ -74,14 +74,11 @@ export default async function Page({
                 height={20}
               />
               <p className="text-[#7A7A7A] text-xs">
-                {data.specialization} at <span className="uppercase"></span>
+                {data.specialization} specialist
               </p>
             </div>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad,
-              adipisci architecto assumenda laborum iste fugiat. Temporibus
-              repellendus soluta, recusandae ex obcaecati voluptates, a nihil
-              quae dolorum deleniti unde? Facilis, quia.
+              Welcome to the profile of Dr. {data.last_name} {data.first_name}, a {data.specialization} specialist. Explore their bio, learn about their expertise, and schedule an appointment to receive personalized medical care.
             </p>
             <hr className="mt-8" />
           </section>

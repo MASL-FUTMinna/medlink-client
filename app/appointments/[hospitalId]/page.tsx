@@ -48,7 +48,7 @@ export default async function Page({ params }: { params: { hospitalId: string } 
           <h3 className="text-zinc-900 text-[40px] font-semibold">
             Practioners in {data.name}
           </h3>
-          <ul className="flex gap-6 font-medium text-[#667185]">
+          {/* <ul className="flex gap-6 font-medium text-[#667185]">
             <li className="flex gap-1">
               <Image
                 src="/assets/icons/filter.svg"
@@ -76,7 +76,7 @@ export default async function Page({ params }: { params: { hospitalId: string } 
               />
               opticians
             </li>
-          </ul>
+          </ul> */}
         </div>
         <PractitionersList data={data} />
       </section>
