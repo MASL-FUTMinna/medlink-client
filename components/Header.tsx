@@ -6,6 +6,7 @@ const Header = () => {
   const cookieStore = cookies();
   const token = cookieStore.get("token");
 
+
   return (
     <header className="sticky top-0 backdrop-blur-xl z-50">
       <nav className="section w-full flex justify-between items-center">
