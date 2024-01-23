@@ -35,13 +35,14 @@ export default function Page() {
       setLoading(true);
       try {
         const res = await fetch(
-          `https://medlink-server-production.up.railway.app/appointments/users/${userId}`
+          `https://medlink-server-production.up.railway.app/appointments/users/${userId}`,{}
         );
         if (!res.ok) {
           setLoading(false);
           throw new Error("Failed to fetch appointment data");
         }
         const result = await res.json();
+        console.log({result})
         setData(result);
         setLoading(false);
       } catch (error) {
@@ -58,7 +59,13 @@ export default function Page() {
         <p className=" text-black text-4xl font-semibold">Appointments</p>
       </section>
       {
-        isLoading ? <Loading /> : (
+        isLoading ? <Loading /> 
+        ? data.length == 0 : (
+          <section className="mt-10 grid  md:grid-cols-2 gap-10 section">
+            <p>Unable to fetch appointment please try again later</p>
+          </section>
+        )
+        : (
           <section className="mt-10 grid  md:grid-cols-2 gap-10 section">
             {data.map((appointment) => (
               <div key={appointment.id} className="flex items-center flex-col sm:flex-row gap-8 border-b border-gray-200 pb-5">
