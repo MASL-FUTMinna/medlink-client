@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { DirectLine } from "botframework-directlinejs";
 import Button from "@/components/ui/Button";
 import { FaArrowCircleRight, FaUserCircle } from "react-icons/fa";
+import ActionMessages from "@/components/AI Chat/ActionButtons";
+import { BeatLoader } from "react-spinners";
 
 const directLine = new DirectLine({
 	secret: process.env.NEXT_PUBLIC_CHATBOT_API_KEY,
@@ -27,6 +29,8 @@ export default function Page() {
 	const [name, setName] = useState("");
 	const [messages, setMessages] = useState({});
 	const [user, setUser] = useState<UserType | null>(null);
+	const [isLoading, setIsLoading] = useState(false);
+	const messagesContainerRef = useRef(null);
 
 	useEffect(() => {
 		directLine.activity$
@@ -36,6 +40,8 @@ export default function Page() {
 					...prev,
 					[message.id as string]: message,
 				}));
+
+				setIsLoading(false);
 			});
 	}, []);
 
@@ -49,10 +55,30 @@ export default function Page() {
 			text: text,
 		};
 
+		setIsLoading(true);
+
 		directLine.postActivity(message).subscribe((id) => {
 			setMessages((prev) => ({
 				...prev,
 				[id as string]: message,
+			}));
+			setText("");
+		});
+	};
+
+	const handleSendMessage = (text: string, value: string) => {
+		const message = {
+			from: user,
+			type: "message",
+			text: value,
+		};
+
+		setIsLoading(true);
+
+		directLine.postActivity(message).subscribe((id) => {
+			setMessages((prev) => ({
+				...prev,
+				[id as string]: { ...message, text: text },
 			}));
 			setText("");
 		});
@@ -66,10 +92,17 @@ export default function Page() {
 		});
 	};
 
+	useEffect(() => {
+		// Scroll to the bottom when messages change
+		if (messagesContainerRef.current) {
+			messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+		}
+	}, [messages]);
+
 	if (!user) {
 		return (
-			<div className=" h-[80vh] flex justify-center items-center p-4 bg-blue-50">
-				<div className=" bg-white w-full p-4 space-y-4 max-w-3xl mx-auto rounded-xl lg:p-8 lg:space-y-6">
+			<div className=" h-[80vh] flex justify-center items-center p-4 ">
+				<div className=" bg-blue-50 w-full p-4 space-y-4 max-w-3xl mx-auto rounded-xl lg:p-8 lg:space-y-6">
 					<h2 className=" text-xl font-semibold text-center">Welcome to Medlink AI Chatbot</h2>
 					<p className=" md:text-lg text-center">
 						Your personalized chatbot for all your medical and health related questions. <br />
@@ -94,7 +127,7 @@ export default function Page() {
 	}
 
 	return (
-		<main className=" p-4  bg-blue-100  ">
+		<main className=" p-4    ">
 			<section className=" max-w-4xl mx-auto flex flex-col gap-4">
 				<div className=" bg-white p-4">
 					<p className="text-center font-semibold text-lg rounded-lg">
@@ -102,7 +135,7 @@ export default function Page() {
 					</p>
 				</div>
 				<div className=" h-[70vh]   flex flex-col justify-end ">
-					<div className=" overflow-y-auto gap-4 flex flex-col">
+					<div className=" overflow-y-auto gap-4 flex flex-col" ref={messagesContainerRef}>
 						{Object.keys(messages)
 							.sort((a, b) => {
 								// Extracting the numeric part after the "|"
@@ -112,27 +145,35 @@ export default function Page() {
 								// Comparing the numeric parts
 								return numA - numB;
 							})
-							.map((id) => {
+							.map((id, index) => {
 								const message = messages[id];
 								return (
 									<>
 										{message.from.id === user.id ? (
-											<div className=" flex justify-end items-center w-full  ">
+											<div className=" flex justify-end items-center w-full  " key={index}>
 												<div className=" bg-primary text-white p-3 rounded-md max-w-[80%]">
 													<h4>{message.from.name}</h4>
 													<p className="text-white">{message.text}</p>
 												</div>
 											</div>
 										) : (
-											<div className=" ">
-												<div className=" bg-white  p-3 rounded-md max-w-[80%]">
+											<div className=" " key={index}>
+												<div className=" bg-blue-100 p-3 rounded-md max-w-[80%] space-y-2">
 													<h4>Medlink AI</h4>
 													<p
 														className=""
 														dangerouslySetInnerHTML={{
-															__html: message.speak.replace(/\n/g, "<br>").replace(/<break\/>/g, "<br>"),
+															__html: message?.text.replace(/\n/g, "<br>").replace(/<break\/>/g, "<br>"),
 														}}
 													></p>
+
+													{message.attachments && (
+														<ActionMessages
+															attachments={message.attachments}
+															sendMessage={handleSendMessage}
+															isLoading={isLoading}
+														/>
+													)}
 												</div>
 											</div>
 										)}
@@ -140,8 +181,13 @@ export default function Page() {
 								);
 							})}
 					</div>
+
+					{/* loading spinner */}
+					<div className=" flex justify-center  items-center p-6">
+						<BeatLoader color="#3B82F6" loading={isLoading} size={15} />
+					</div>
 				</div>
-				<form className="  bg-white p-2 flex items-center space-x-4  rounded-lg" onSubmit={sendMessage}>
+				<form className="  bg-gray-100 p-2 flex items-center space-x-4  rounded-lg" onSubmit={sendMessage}>
 					<input
 						type="search"
 						required
@@ -150,7 +196,7 @@ export default function Page() {
 						value={text}
 						onChange={(e) => setText(e.target.value)}
 					/>
-					<button>
+					<button type="submit" disabled={isLoading}>
 						<FaArrowCircleRight size={28} />
 					</button>
 				</form>
