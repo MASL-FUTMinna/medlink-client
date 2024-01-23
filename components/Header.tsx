@@ -7,6 +7,7 @@ const Header = () => {
   const cookieStore = cookies();
   const token = cookieStore.get("token");
 
+
   return (
     <Navbar token={token} />
   );
