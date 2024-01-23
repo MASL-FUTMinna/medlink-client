@@ -28,15 +28,22 @@ const timeFormat = (inputTime) => {
   return formattedTime;
 };
 
+interface token {
+  name : string
+  value: string
+}
+
+
 const SelectAppointment = ({
   scheduleData,
   token,
   id,
 }: {
   scheduleData: AvailableDate[];
-  token: string;
+  token: token;
   id: string;
 }) => {
+
   const router = useRouter();
   const [errors, setErrors] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -50,6 +57,7 @@ const SelectAppointment = ({
     setSelectedDate(null);
     setSelectedDate(event.target.value);
   };
+  console.log(token)
 
   const handleSubmit = async () => {
     setErrors(null);
@@ -68,7 +76,7 @@ const SelectAppointment = ({
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token.value}`,
           },
         }
       );
@@ -101,7 +109,7 @@ const SelectAppointment = ({
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token.value}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(scheduleInfo),
