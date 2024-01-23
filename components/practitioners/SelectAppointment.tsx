@@ -29,7 +29,7 @@ const timeFormat = (inputTime) => {
 };
 
 interface token {
-  name : string
+  name: string
   value: string
 }
 
