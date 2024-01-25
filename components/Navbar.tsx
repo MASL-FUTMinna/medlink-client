@@ -1,4 +1,5 @@
 "use client";
+import { useAuthContext } from "@/providers/AuthProvider";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,8 +10,9 @@ interface token {
   value: string;
 }
 
-const Navbar = ({ token }: { token: token | null }) => {
+const Navbar = () => {
   const pathname = usePathname();
+  const { isLoggedIn, user } = useAuthContext();
 
   const isPractitionerPage = pathname.startsWith("/practitioner");
 
@@ -37,7 +39,7 @@ const Navbar = ({ token }: { token: token | null }) => {
                 }
               >
                 {isPractitionerPage
-                  ? `${token ? "Check Schedule" : ""}`
+                  ? `${isLoggedIn ? "Check Schedule" : ""}`
                   : "Book Appointment"}
               </Link>
             </li>
@@ -50,7 +52,7 @@ const Navbar = ({ token }: { token: token | null }) => {
           </ul>
 
           <div className="flex gap-2 items-center font-semibold text-accent-800">
-            {token ? (
+            {isLoggedIn ? (
               <Link
                 href={
                   isPractitionerPage ? "/practitioner" : "/appointments/history"

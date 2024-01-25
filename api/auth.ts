@@ -4,11 +4,12 @@ import { baseUrl } from "./baseUrl";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
-import { useAuthContext } from "@/providers/AuthProvider";
+import config from "@/utils/config";
+// import { useAuthContext } from "@/providers/AuthProvider";
 
 export const useLogin = () => {
   const { toast } = useToast();
-  const { login } = useAuthContext();
+  // const { login } = useAuthContext();
   const router = useRouter();
 
   return useMutation({
@@ -17,13 +18,19 @@ export const useLogin = () => {
       return res.data;
     },
     onSuccess: (res) => {
-      login(res);
+      // login(res);
       toast({
         description: "Signin Successful",
         variant: "success",
         duration: 2000,
       });
-      router.push("/appointments/history");
+      const redirect = localStorage.getItem(config.key.redirect);
+      if (redirect) {
+        router.push(redirect);
+        localStorage.removeItem(config.key.redirect);
+      } else {
+        router.push("/appointments/history");
+      }
     },
   });
 };

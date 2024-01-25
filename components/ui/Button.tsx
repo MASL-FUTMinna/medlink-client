@@ -11,6 +11,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-secondary text-white hover:bg-secondary/70 ",
+        error:
+          "bg-red-50/50 text-red-500 hover:bg-red-500/10 border-transparent border hover:border-red-200",
         destructive:
           "bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
         outline:
@@ -65,7 +67,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {children}
         {isLoading && (
-          <ImSpinner2 className="animate-spin repeat-infinite  text-lg" />
+          <ImSpinner2 className="animate-spin repeat-infinite text-xl" />
         )}
       </Comp>
     );

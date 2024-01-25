@@ -5,6 +5,7 @@ import React, {
   PropsWithChildren,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -30,17 +31,21 @@ const AuthContext = createContext<AuthContextType>(defaultAuthObj);
 
 export const useAuthContext = () => useContext(AuthContext);
 
-const user = localStorage.getItem(config.key.user);
-let persistedUser: LoggedInUser | null;
-if (!user) {
-  persistedUser = null;
-} else persistedUser = JSON.parse(user);
-
-console.log(persistedUser);
-
 export default function AuthProvider({ children }: AuthProviderProps) {
-  const [isLoggedIn, setIsLoggedIn] = useState(!!persistedUser);
-  const [user, setUser] = useState<LoggedInUser | null>(persistedUser);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<LoggedInUser | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const user = localStorage.getItem(config.key.user);
+      if (!user) {
+        setUser(null);
+      } else {
+        setUser(JSON.parse(user));
+        setIsLoggedIn(!!JSON.parse(user));
+      }
+    }
+  }, []);
 
   const login = (user: LoggedInUser) => {
     localStorage.setItem(config.key.user, JSON.stringify(user));

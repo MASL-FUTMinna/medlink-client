@@ -33,17 +33,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ReactQueryClientProvider>
-      <AuthProvider>
-        <html lang="en">
+    <html lang="en">
+      <ReactQueryClientProvider>
+        <AuthProvider>
           <body className={`${inter.variable} ${lexend.variable}`}>
             <Header />
             {children}
             <Footer />
             <Toaster />
           </body>
-        </html>
-      </AuthProvider>
-    </ReactQueryClientProvider>
+        </AuthProvider>
+      </ReactQueryClientProvider>
+    </html>
   );
 }
