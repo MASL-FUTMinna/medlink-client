@@ -52,10 +52,10 @@ export default function Page() {
               </h3>
 
               <p className=" leading-6 text-gray-500  lg:text-lg lg:leading-8">
-                Prepare for an interactive journey as we delve into your health
+                {` Prepare for an interactive journey as we delve into your health
                 history through a personalized clinical-history taking process.
                 Your health story matters, and we're here to uncover the
-                insights that matter most to you
+                insights that matter most to you`}
               </p>
 
               {/* <MedicalQuestions /> */}
