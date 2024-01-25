@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "./ui/Button";
+import { Button } from "./ui/Button";
 import Link from "next/link";
 
 export default function GetDiagnosis() {
@@ -20,7 +20,7 @@ export default function GetDiagnosis() {
             starts with a click – 'Get diagnosis'`}
           </p>
           <Link href="/diagnosis">
-            <Button>Get Diagnosis</Button>
+            <Button className="w-[274px]">Get Diagnosis</Button>
           </Link>
         </div>
       </div>

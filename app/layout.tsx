@@ -3,6 +3,11 @@ import { Inter, Lexend } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+import { Toaster } from "@/components/ui/toaster";
+import AuthProvider from "@/providers/AuthProvider";
+import { cookies } from "next/headers";
+import config from "@/utils/config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,12 +33,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${lexend.variable}`}>
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <ReactQueryClientProvider>
+      <AuthProvider>
+        <html lang="en">
+          <body className={`${inter.variable} ${lexend.variable}`}>
+            <Header />
+            {children}
+            <Footer />
+            <Toaster />
+          </body>
+        </html>
+      </AuthProvider>
+    </ReactQueryClientProvider>
   );
 }

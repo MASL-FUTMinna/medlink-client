@@ -1,7 +1,7 @@
 "use client";
 import { AvailableDate } from "@/types/date";
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Root } from "@/types/appointment";
@@ -29,10 +29,9 @@ const timeFormat = (inputTime) => {
 };
 
 interface token {
-  name: string
-  value: string
+  name: string;
+  value: string;
 }
-
 
 const SelectAppointment = ({
   scheduleData,
@@ -43,7 +42,6 @@ const SelectAppointment = ({
   token: token;
   id: string;
 }) => {
-
   const router = useRouter();
   const [errors, setErrors] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -57,8 +55,8 @@ const SelectAppointment = ({
     setSelectedDate(null);
     setSelectedDate(event.target.value);
   };
-  console.log(token)
-  console.log(id)
+  console.log(token);
+  console.log(id);
 
   const handleSubmit = async () => {
     setErrors(null);
@@ -107,7 +105,7 @@ const SelectAppointment = ({
         timeZone: "Africa/lagos",
       };
 
-      console.log(scheduleInfo)
+      console.log(scheduleInfo);
       const scheduleAppointment = await fetch(
         "https://medlink-server-production.up.railway.app/appointments",
         {

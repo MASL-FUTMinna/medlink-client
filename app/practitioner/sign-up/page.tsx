@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -23,10 +23,10 @@ export default function Page() {
     lastName: "",
     email: "",
     password: "",
-    bio: '',
-    specialization: '',
-    hospitalId: '',
-    photo: null, 
+    bio: "",
+    specialization: "",
+    hospitalId: "",
+    photo: null,
   };
 
   const [errors, setErrors] = useState<string | null>(null);
@@ -34,10 +34,12 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>(initialForm);
 
-  const handleInput = (e: { target: { name: string; value: string; type: string } }) => {
+  const handleInput = (e: {
+    target: { name: string; value: string; type: string };
+  }) => {
     const { name, value, type } = e.target;
-    if (type === 'file') {
-      console.log(formData.photo)
+    if (type === "file") {
+      console.log(formData.photo);
       setFormData((prevData) => ({
         ...prevData,
         [name]: (e.target as HTMLInputElement).files?.[0] || null,
@@ -56,10 +58,9 @@ export default function Page() {
     console.log(formData);
     setIsLoading(true);
     try {
-
       const formdata = new FormData();
 
-      console.log(formdata)
+      console.log(formdata);
       // Append all data to FormData
       Object.entries(formData).forEach(([key, value]) => {
         if (value !== null) {
@@ -190,7 +191,7 @@ export default function Page() {
                 placeholder="Enter Bio"
                 className="p-6 text-sm w-full bg-white rounded-2xl border border-stone-300 focus:outline-none"
               />
-              
+
               <label
                 htmlFor="specialization"
                 className="text-zinc-900 text-[13px] font-medium leading-snug"
@@ -207,7 +208,7 @@ export default function Page() {
                 placeholder="Enter Specialization"
                 className="p-6 text-sm w-full bg-white rounded-2xl border border-stone-300 focus:outline-none"
               />
-              
+
               <label
                 htmlFor="hospitalId"
                 className="text-zinc-900 text-[13px] font-medium leading-snug"
@@ -224,7 +225,7 @@ export default function Page() {
                 placeholder="Enter Hospital ID"
                 className="p-6 text-sm w-full bg-white rounded-2xl border border-stone-300 focus:outline-none"
               />
-              
+
               <label
                 htmlFor="photo"
                 className="text-zinc-900 text-[13px] font-medium leading-snug"

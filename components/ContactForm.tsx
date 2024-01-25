@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "./ui/Button";
+import { Button } from "./ui/Button";
 
 const ContactForm = () => {
   return (
@@ -31,20 +31,20 @@ const ContactForm = () => {
             Send a mail
           </Button>
         </form>
-      <Image
-        src="/assets/images/contact-bg.png"
-        alt="Partners"
-        width={600}
-        height={400}
-        className="absolute top-0 left-2 rotate-180"
-      />
-      <Image
-        src="/assets/images/contact-bg.png"
-        alt="Partners"
-        width={600}
-        height={400}
-        className="absolute bottom-0 right-2"
-      />
+        <Image
+          src="/assets/images/contact-bg.png"
+          alt="Partners"
+          width={600}
+          height={400}
+          className="absolute top-0 left-2 rotate-180"
+        />
+        <Image
+          src="/assets/images/contact-bg.png"
+          alt="Partners"
+          width={600}
+          height={400}
+          className="absolute bottom-0 right-2"
+        />
       </div>
     </section>
   );
