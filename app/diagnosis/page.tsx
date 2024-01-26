@@ -4,7 +4,6 @@ import diagnosisBg from "@/public/assets/images/diagonsis.png";
 import diagnosisImg1 from "@/public/assets/images/diagnosis-1.png";
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
-import MedicalQuestions from "@/components/diagnosis/questions";
 import MaxWidth from "@/components/MaxWidth";
 import { useRouter } from "next/navigation";
 
@@ -60,7 +59,7 @@ export default function Page() {
 
               {/* <MedicalQuestions /> */}
 
-              <Button handleClick={goToAiChat}>Start Diagnosis</Button>
+              <Button onClick={goToAiChat}>Start Diagnosis</Button>
             </div>
           </div>
         </section>

@@ -142,11 +142,9 @@ const MedicalQuestions = () => {
             Previous
           </button>
         )}
-        {step < questions.length && (
-          <Button handleClick={handleNext}>Next</Button>
-        )}
+        {step < questions.length && <Button onClick={handleNext}>Next</Button>}
         {step === questions.length && (
-          <Button handleClick={handleSubmit}>Submit</Button>
+          <Button onClick={handleSubmit}>Submit</Button>
         )}
       </div>
     </div>
