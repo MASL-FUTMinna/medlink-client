@@ -1,5 +1,5 @@
 import Accordion from "./Accordion";
-import { Button } from "./ui/Button";
+// import { Button } from "./ui/Button";
 
 const FAQ = () => {
   const FAQ_LIST = [
@@ -64,7 +64,7 @@ const FAQ = () => {
           button below or directly contact our support.
         </p>
 
-        <Button>Read all FAQ</Button>
+        {/* <Button>Read all FAQ</Button> */}
       </section>
       <section className="flex flex-col gap-6">
         {FAQ_LIST.map((faq, index) => (

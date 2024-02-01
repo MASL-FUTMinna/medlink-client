@@ -12,7 +12,7 @@ import {
   Path,
 } from "react-hook-form";
 
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export type FormInputProps<TFormValues extends FieldValues = FieldValues> = {
   placeholder: string;
@@ -76,7 +76,7 @@ export default function Input({
             onClick={() => setShow(!show)}
             className="absolute top-0 right-0 h-full flex items-center px-6 text-slate-600 cursor-pointer text-xl"
           >
-            <FaEye />
+            {show ? <FaEye /> : <FaEyeSlash />}
           </div>
         )}
       </div>

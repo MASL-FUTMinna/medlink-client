@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "./ui/Button";
+import Link from "next/link";
 
 export default function ContactSection() {
   return (
@@ -19,18 +20,17 @@ export default function ContactSection() {
           seamless, convenient bookings
         </p>
 
-        <Button
-          leftIcon={
+        <Link href="#contact">
+          <Button>
             <Image
               src="/assets/icons/phone.svg"
               alt="phone icon"
               width="20"
               height="20"
             />
-          }
-        >
-          Contact us
-        </Button>
+            Contact us
+          </Button>
+        </Link>
       </div>
       <Image
         src="/assets/images/medical-team.png"

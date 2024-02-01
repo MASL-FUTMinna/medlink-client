@@ -20,7 +20,7 @@ export default function Page() {
       {isLoading ? (
         <PractitionerDetailsSkeleton />
       ) : data ? (
-        <section className="section grid lg:grid-cols-11 gap-8 ">
+        <section className="section grid lg:grid-cols-11 gap-12 pb-14 ">
           <div className="bg-slate-300 h-[60vh] lg:h-[70vh] max-w-[500px] lg:max-w-full mx-auto w-full col-span-11 lg:col-span-5">
             <Image
               src={data.photoUrl}

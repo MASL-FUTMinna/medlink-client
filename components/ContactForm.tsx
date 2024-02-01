@@ -18,16 +18,13 @@ const ContactForm = () => {
             placeholder="Email address"
             className="w-3/5 py-4 px-6 rounded-md outline-none text-sm"
           />
-          <Button
-            leftIcon={
-              <Image
-                src="/assets/icons/chat.svg"
-                alt="chat icon"
-                width={20}
-                height={20}
-              />
-            }
-          >
+          <Button>
+            <Image
+              src="/assets/icons/chat.svg"
+              alt="chat icon"
+              width={20}
+              height={20}
+            />
             Send a mail
           </Button>
         </form>

@@ -5,11 +5,11 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import config from "@/utils/config";
-// import { useAuthContext } from "@/providers/AuthProvider";
+import { useAuthContext } from "@/providers/AuthProvider";
 
 export const useLogin = () => {
   const { toast } = useToast();
-  // const { login } = useAuthContext();
+  const { login } = useAuthContext();
   const router = useRouter();
 
   return useMutation({
@@ -18,7 +18,7 @@ export const useLogin = () => {
       return res.data;
     },
     onSuccess: (res) => {
-      // login(res);
+      login(res);
       toast({
         description: "Signin Successful",
         variant: "success",

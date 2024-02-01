@@ -23,7 +23,7 @@ export default function SignupForm() {
     mutate(data);
   };
   return (
-    <AuthCard title="Welcome" subtitle="Complete details to sign in">
+    <AuthCard title="Welcome" subtitle="Complete details to sign up">
       <form onSubmit={handleSubmit(onSubmit)} className="mt-16 space-y-7">
         <Input
           errors={errors}
@@ -78,12 +78,12 @@ export default function SignupForm() {
         </Button>
 
         <p className="text-center text-zinc-900 text-sm font-normal leading-snug">
-          Don’t have an account yet?{" "}
+          Already have an account?{" "}
           <Link
-            href="/auth/sign-up"
+            href="/auth/sign-in"
             className=" text-indigo-800 text-sm font-semibold underline leading-snug"
           >
-            Create one
+            Sign In
           </Link>
         </p>
       </form>
