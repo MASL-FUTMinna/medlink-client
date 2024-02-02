@@ -20,7 +20,7 @@ export default function ContactSection() {
           seamless, convenient bookings
         </p>
 
-        <Link href="#contact">
+        <a href="#contact">
           <Button>
             <Image
               src="/assets/icons/phone.svg"
@@ -30,7 +30,7 @@ export default function ContactSection() {
             />
             Contact us
           </Button>
-        </Link>
+        </a>
       </div>
       <Image
         src="/assets/images/medical-team.png"

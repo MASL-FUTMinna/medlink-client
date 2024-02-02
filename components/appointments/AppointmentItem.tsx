@@ -16,10 +16,10 @@ export default function AppointmentItem({ appointment }: AppointmentItemProps) {
         src={appointment.practitioner.photoUrl}
         alt={`Image of Doctor ${appointment.practitioner.first_name}`}
         width={140}
-        height={500}
-        className="rounded-lg"
+        height={200}
+        className="rounded-lg w-full md:w-[140px] md:h-[200px] object-cover h-[400px]"
       />
-      <div className="flex flex-col gap-2">
+      <div className="flex w-full flex-col gap-4 md:gap-2">
         <h4 className="text-black font-normal">
           Appointment with{" "}
           <span className="text-indigo-800  font-bold">
@@ -79,14 +79,18 @@ export default function AppointmentItem({ appointment }: AppointmentItemProps) {
 
         <div className="flex gap-2 items-center">
           {appointment.status === "pending" && (
-            <Button variant="error" size="sm" className="text-red-500 text-sm ">
+            <Button
+              variant="error"
+              size="sm"
+              className="text-red-500 text-sm w-full md:w-fit "
+            >
               <IoMdCloseCircleOutline className="text-base -mr-1" />
               Cancel
             </Button>
           )}
 
           {appointment.status !== "completed" && (
-            <Button size={"sm"} className="w-[124px]">
+            <Button size={"sm"} className="md:w-[124px] w-full">
               Reschedule
             </Button>
           )}
