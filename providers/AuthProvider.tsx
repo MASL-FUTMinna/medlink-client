@@ -49,6 +49,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
   const login = (user: LoggedInUser) => {
     localStorage.setItem(config.key.user, JSON.stringify(user));
+    localStorage.setItem(config.key.token, user.access_token);
     setUser(user);
     setIsLoggedIn(true);
   };

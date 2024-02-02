@@ -1,4 +1,5 @@
 import { useToast } from "@/components/ui/use-toast";
+import config from "@/utils/config";
 import axios from "axios";
 import { useEffect, useRef } from "react";
 
@@ -7,6 +8,17 @@ const useAxiosInterceptor = () => {
   const isToastShownRef = useRef(false);
 
   useEffect(() => {
+    const requestInterceptor = axios.interceptors.request.use(
+      function (axiosConfig) {
+        const token = localStorage.getItem(config.key.token);
+        axiosConfig.headers.Authorization = `Bearer ${token}`;
+        return axiosConfig;
+      },
+      function (error) {
+        return Promise.reject(error);
+      }
+    );
+
     const responseInterceptor = axios.interceptors.response.use(
       function (response) {
         return response;
@@ -47,6 +59,7 @@ const useAxiosInterceptor = () => {
     return () => {
       // Remove the interceptor when the component unmounts
       axios.interceptors.response.eject(responseInterceptor);
+      axios.interceptors.request.eject(requestInterceptor);
     };
   }, []);
 };

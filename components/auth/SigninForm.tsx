@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { LoginSchemaType, loginSchema } from "@/schemas/authSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLogin } from "@/api/auth";
-import { AuthCard } from ".";
+import AuthCard from "./AuthCard";
 
 export default function SigninForm() {
   const {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { baseUrl } from "./baseUrl";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuthContext } from "@/providers/AuthProvider";
 
@@ -24,5 +24,17 @@ export const useBookAppointment = () => {
         duration: 2000,
       });
     },
+  });
+};
+
+export const useGetAppointmentHistory = () => {
+  const { user } = useAuthContext();
+  return useQuery({
+    queryFn: (): Promise<UserAppointmentResponse> =>
+      axios
+        .get(`${baseUrl}/appointments/users/${user?.id}`)
+        .then((res) => res.data),
+    queryKey: ["hospitals", user?.id],
+    retry: false,
   });
 };
