@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import Input from "@/components/custom/Input";
 import { useForm } from "react-hook-form";
 import { LoginSchemaType, loginSchema } from "@/schemas/authSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLogin } from "@/api/auth";
 import AuthCard from "./AuthCard";
+import { Input } from "../custom";
 
 export default function SigninForm() {
   const {
