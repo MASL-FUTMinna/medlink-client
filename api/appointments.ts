@@ -34,7 +34,7 @@ export const useGetAppointmentHistory = () => {
       axios
         .get(`${baseUrl}/appointments/users/${user?.id}`)
         .then((res) => res.data),
-    queryKey: ["hospitals", user?.id],
+    queryKey: ["user-appointments", user?.id],
     retry: false,
   });
 };

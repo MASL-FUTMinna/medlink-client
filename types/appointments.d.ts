@@ -1,3 +1,5 @@
+type AppointmentStatus = "pending" | "cancelled" | "completed";
+
 interface AppointmentType {
   date: string;
   time: string;
@@ -26,6 +28,7 @@ interface UserAppointment {
   time: string;
   practitioner: PractitionerType;
   id: number;
+  status: AppointmentStatus;
 }
 
 interface UserAppointmentResponse {
