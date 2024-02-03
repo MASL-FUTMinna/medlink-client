@@ -1,23 +1,25 @@
 import axios from "axios";
 import { baseUrl } from "./baseUrl";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuthContext } from "@/providers/AuthProvider";
 
 export const useBookAppointment = () => {
   const { toast } = useToast();
   const { user } = useAuthContext();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (
       values: AppointmentPayload
     ): Promise<AppointmentType> => {
-      const res = await axios.post(`${baseUrl}/appointments`, values, {
-        headers: { Authorization: `Bearer ${user?.access_token}` },
-      });
+      const res = await axios.post(`${baseUrl}/appointments`, values);
       return res.data;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["practitioner-availability"],
+      });
       toast({
         description: "Booking Successful",
         variant: "success",
@@ -36,5 +38,34 @@ export const useGetAppointmentHistory = () => {
         .then((res) => res.data),
     queryKey: ["user-appointments", user?.id],
     retry: false,
+  });
+};
+
+export const useRescheduleAppointment = () => {
+  const { toast } = useToast();
+  const { user } = useAuthContext();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (values: {
+      payload: AppointmentPayload;
+      appointmentId: string;
+    }): Promise<AppointmentType> => {
+      const res = await axios.patch(
+        `${baseUrl}/appointments/${values.appointmentId}/users`,
+        values.payload
+      );
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["practitioner-availability"],
+      });
+      toast({
+        description: "Rescheduling Successful",
+        variant: "success",
+        duration: 2000,
+      });
+    },
   });
 };

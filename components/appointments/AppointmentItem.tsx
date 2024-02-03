@@ -4,12 +4,16 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/Button";
+import ResheculeAppointmentButton from "./ResheculeAppointmentButton";
+import BookingSuccess from "../practitioners/BookingSuccess";
+import useDisclosure from "@/hooks/useDisclosure";
 
 interface AppointmentItemProps {
   appointment: UserAppointment;
 }
 
 export default function AppointmentItem({ appointment }: AppointmentItemProps) {
+  const { isOpen, onClose, onOpen } = useDisclosure();
   return (
     <div className="flex items-center flex-col sm:flex-row gap-6 border-b border-gray-200 pb-5">
       <Image
@@ -83,6 +87,7 @@ export default function AppointmentItem({ appointment }: AppointmentItemProps) {
               variant="error"
               size="sm"
               className="text-red-500 text-sm w-full md:w-fit "
+              onClick={onOpen}
             >
               <IoMdCloseCircleOutline className="text-base -mr-1" />
               Cancel
@@ -90,9 +95,7 @@ export default function AppointmentItem({ appointment }: AppointmentItemProps) {
           )}
 
           {appointment.status !== "completed" && (
-            <Button size={"sm"} className="md:w-[124px] w-full">
-              Reschedule
-            </Button>
+            <ResheculeAppointmentButton appointment={appointment} />
           )}
         </div>
       </div>
