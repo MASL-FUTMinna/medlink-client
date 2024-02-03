@@ -1,3 +1,4 @@
+import { useSearchParams } from "next/navigation";
 import { Skeleton } from "../ui/skeleton";
 import Practioner from "./Practitioner";
 
@@ -7,6 +8,9 @@ interface PractitionersListProps {
 }
 
 const PractitionersList = ({ hospital, isLoading }: PractitionersListProps) => {
+  const searchParams = useSearchParams();
+
+  const appoitmentId = searchParams.get("appointmentId");
   return (
     <ul className="py-8 grid grid-cols-hospitals gap-8">
       {isLoading ? (
@@ -17,8 +21,8 @@ const PractitionersList = ({ hospital, isLoading }: PractitionersListProps) => {
         hospital.practitioners.map((practitioner: HospitalPractioner) => (
           <Practioner
             key={practitioner.id}
-            {...practitioner}
-            hospital_name={hospital.name}
+            practitioner={{ ...practitioner, hospital_name: hospital.name }}
+            appointmentId={appoitmentId}
           />
         ))
       ) : (

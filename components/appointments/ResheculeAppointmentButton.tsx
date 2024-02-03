@@ -20,6 +20,10 @@ export default function ResheculeAppointmentButton({
     );
   };
 
+  const onCancel = () => {
+    router.push(`/appointments?appointmentId=${appointment.id}`);
+  };
+
   return (
     <div>
       <Button onClick={onOpen} size={"sm"} className="md:w-[124px] w-full">
@@ -29,7 +33,7 @@ export default function ResheculeAppointmentButton({
         isOpen={isOpen}
         onContinue={onReschedule}
         onClose={onClose}
-        onCancel={onClose}
+        onCancel={onCancel}
         isLoading={false}
         message="Do you want to reschedule with the same doctor?"
       />

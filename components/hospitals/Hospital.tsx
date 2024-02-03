@@ -5,11 +5,21 @@ import { HospitalProps } from "@/types/hospital";
 import Link from "next/link";
 import { FaHospital } from "react-icons/fa";
 
-const Hospital = ({ id, name, address, city, state }: HospitalProps) => {
+interface HospitalItemProps {
+  hospital: HospitalProps;
+  appointmentId: string | null;
+}
+
+const Hospital = ({ hospital, appointmentId }: HospitalItemProps) => {
+  const { id, name, address, city, state } = hospital;
   return (
     <Link
       className="font-head cursor-pointer relative"
-      href={`/appointments/${id}`}
+      href={
+        appointmentId
+          ? `/appointments/${id}?appointmentId=${appointmentId}`
+          : `/appointments/${id}`
+      }
     >
       <div className="absolute h-full top-0 w-full left-0 hover:bg-secondary/20 rounded-sm transition-all duration-300 ease-in-out "></div>
 

@@ -3,17 +3,22 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Practioner = ({
-  id,
-  first_name,
-  last_name,
-  hospital_name,
-  specialization,
-  photoUrl,
-}: PractitionerType) => {
+interface PractitionerProps {
+  practitioner: PractitionerType;
+  appointmentId: string | null;
+}
+
+const Practioner = ({ practitioner, appointmentId }: PractitionerProps) => {
+  const { id, first_name, last_name, hospital_name, specialization, photoUrl } =
+    practitioner;
+
   return (
     <Link
-      href={`/appointments/practitioner/${id}`}
+      href={
+        appointmentId
+          ? `/appointments/practitioner/${id}?appointmentId=${appointmentId}`
+          : `/appointments/practitioner/${id}`
+      }
       className="font-head cursor-pointer relative pb-2"
     >
       <div className="absolute h-full top-0 w-full left-0 hover:bg-secondary/20 rounded-sm transition-all duration-300 ease-in-out "></div>

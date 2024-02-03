@@ -31,7 +31,7 @@ export default function ConfirmAction({
         <div className="flex items-center justify-center gap-5">
           <Button
             onClick={onCancel || onClose}
-            variant="ghost"
+            variant="error"
             size="sm"
             className="text-red-500 "
             disabled={isLoading}

@@ -6,7 +6,6 @@ import { useAuthContext } from "@/providers/AuthProvider";
 
 export const useBookAppointment = () => {
   const { toast } = useToast();
-  const { user } = useAuthContext();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -43,7 +42,6 @@ export const useGetAppointmentHistory = () => {
 
 export const useRescheduleAppointment = () => {
   const { toast } = useToast();
-  const { user } = useAuthContext();
   const queryClient = useQueryClient();
 
   return useMutation({
