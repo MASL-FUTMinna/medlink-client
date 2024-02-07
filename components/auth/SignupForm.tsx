@@ -30,7 +30,6 @@ export default function SignupForm() {
           label="First Name"
           placeholder="Enter Your First Name"
           name="firstName"
-          // @ts-ignore
           control={control}
         />
         <Input
@@ -38,7 +37,6 @@ export default function SignupForm() {
           label="Last Name"
           placeholder="Enter Your Last Name"
           name="lastName"
-          // @ts-ignore
           control={control}
         />
         <Input
@@ -46,7 +44,6 @@ export default function SignupForm() {
           label="Email"
           placeholder="Enter Your Email"
           name="email"
-          // @ts-ignore
           control={control}
         />
 
@@ -54,7 +51,6 @@ export default function SignupForm() {
           errors={errors}
           label="Password"
           placeholder="Enter Your Password"
-          // @ts-ignore
           control={control}
           name="password"
           type="password"
@@ -63,7 +59,6 @@ export default function SignupForm() {
           errors={errors}
           label="Confirm Password"
           placeholder="Confirm Your Password"
-          // @ts-ignore
           control={control}
           name="confirmPassword"
           type="password"

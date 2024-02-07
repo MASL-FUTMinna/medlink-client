@@ -31,7 +31,6 @@ export default function SigninForm() {
             label="Email"
             placeholder="Enter Your Email"
             name="email"
-            // @ts-ignore
             control={control}
           />
 
@@ -39,7 +38,6 @@ export default function SigninForm() {
             errors={errors}
             label="Password"
             placeholder="Enter Your Password"
-            // @ts-ignore
             control={control}
             name="password"
             type="password"

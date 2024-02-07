@@ -17,7 +17,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 export type FormInputProps<TFormValues extends FieldValues = FieldValues> = {
   placeholder: string;
   label: React.ReactNode;
-  control: Control<TFormValues>;
+  control: Control<any>;
   errors?: Partial<DeepMap<TFormValues, FieldError>> | FieldErrors<TFormValues>;
   name: Path<TFormValues>;
 } & Omit<
