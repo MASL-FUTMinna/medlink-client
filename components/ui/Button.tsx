@@ -1,26 +1,78 @@
-type Prop = {
-	children: React.ReactNode;
-	disabled?: boolean;
-	className?: string;
-	leftIcon?: React.ReactNode;
-	rightIcon?: React.ReactNode;
-	handleClick?: () => void;
-	type?: "button" | "submit";
-};
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-const Button = ({ children, disabled, className, leftIcon, rightIcon,  handleClick, type = "submit" }: Prop) => {
-	return (
-		<button
-			className={`py-4 px-6 flex gap-2 text-white text-sm font-head font-semibold rounded-md bg-accent  ${disabled ? "opacity-40" : ""} ${className}`}
-			type={type}
-			onClick={handleClick}
-			disabled={disabled}
-		>
-			<span>{leftIcon}</span>
-			{children}
-			<span>{rightIcon}</span>
-		</button>
-	);
-};
+import { cn } from "@/lib/utils";
+import { ImSpinner2 } from "react-icons/im";
 
-export default Button;
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap rounded-[4px] text-sm font-medium duration-500 ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-300",
+  {
+    variants: {
+      variant: {
+        default: "bg-secondary text-white hover:bg-secondary/70 ",
+        error:
+          "bg-red-50/50 text-red-500 hover:bg-red-500/10 border-transparent border hover:border-red-200",
+        destructive:
+          "bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90",
+        outline:
+          "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
+        secondary:
+          "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",
+        ghost:
+          "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
+        link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
+      },
+      size: {
+        default: "h-[55px] px-4 py-2",
+        sm: "h-10 rounded-[4px] px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  isLoading?: boolean;
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      isLoading,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }), "gap-3")}
+        disabled={isLoading}
+        ref={ref}
+        {...props}
+      >
+        {children}
+        {isLoading && (
+          <ImSpinner2 className="animate-spin repeat-infinite text-xl" />
+        )}
+      </Comp>
+    );
+  }
+);
+Button.displayName = "Button";
+
+export { Button, buttonVariants };

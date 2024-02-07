@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "./ui/Button";
+import { Button } from "./ui/Button";
 import Link from "next/link";
 
 export default function BookAppointment() {
@@ -28,17 +28,14 @@ export default function BookAppointment() {
         </p>
 
         <Link href="/appointments">
-          <Button
-            rightIcon={
-              <Image
-                src="/assets/icons/arrow-right.svg"
-                alt="phone icon"
-                width="20"
-                height="20"
-              />
-            }
-          >
+          <Button>
             Check availability
+            <Image
+              src="/assets/icons/arrow-right.svg"
+              alt="phone icon"
+              width="20"
+              height="20"
+            />
           </Button>
         </Link>
       </div>
