@@ -2,9 +2,9 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { useForm } from "react-hook-form";
-import { SignupSchemaType, signupSchema } from "@/schemas/authSchema";
+import { PractitionerSignupSchemaType, practitionerSignupSchema } from "@/schemas/authSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSignup } from "@/api/auth";
+import { usePractitionerSignup } from "@/api/auth";
 import AuthCard from "./AuthCard";
 import { Input } from "../custom";
 
@@ -13,13 +13,13 @@ export default function SignupForm() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignupSchemaType>({
-    resolver: yupResolver(signupSchema),
+  } = useForm<PractitionerSignupSchemaType>({
+    resolver: yupResolver(practitionerSignupSchema),
   });
 
-  const { isPending, mutate } = useSignup();
+  const { isPending, mutate } = usePractitionerSignup();
 
-  const onSubmit = (data: SignupSchemaType) => {
+  const onSubmit = (data: PractitionerSignupSchemaType) => {
     mutate(data);
   };
   return (

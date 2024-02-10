@@ -1,4 +1,4 @@
-import { LoginSchemaType, SignupSchemaType } from "@/schemas/authSchema";
+import { LoginSchemaType, SignupSchemaType, PractitionerSignupSchemaType } from "@/schemas/authSchema";
 import axios from "axios";
 import { baseUrl } from "./baseUrl";
 import { useMutation } from "@tanstack/react-query";
@@ -72,6 +72,25 @@ export const useSignup = () => {
         duration: 2000,
       });
       router.push("/auth/sign-in");
+    },
+  });
+};
+
+export const usePractitionerSignup = () => {
+  const router = useRouter();
+  const { toast } = useToast();
+  return useMutation({
+    mutationFn: async (values: PractitionerSignupSchemaType) => {
+      const res = await axios.post(`${baseUrl}/practitioners`, values);
+      return res.data;
+    },
+    onSuccess: (res) => {
+      toast({
+        description: "Signup Successful",
+        variant: "success",
+        duration: 2000,
+      });
+      router.push("/auth/practitioner/sign-in");
     },
   });
 };
