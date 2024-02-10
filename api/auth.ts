@@ -35,6 +35,28 @@ export const useLogin = () => {
   });
 };
 
+export const usePractitionerLogin = () => {
+  const { toast } = useToast();
+  const { login } = useAuthContext();
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: async (values: LoginSchemaType) => {
+      const res = await axios.post(`${baseUrl}/auth/practitioners`, values);
+      return res.data;
+    },
+    onSuccess: (res) => {
+      login(res);
+      toast({
+        description: "Signin Successful",
+        variant: "success",
+        duration: 2000,
+      });
+      router.push("/practitioner");
+    },
+  });
+};
+
 export const useSignup = () => {
   const router = useRouter();
   const { toast } = useToast();
