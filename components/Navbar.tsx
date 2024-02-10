@@ -5,16 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaAngleDown } from "react-icons/fa";
 
-interface token {
-  name: string;
-  value: string;
-}
-
 const Navbar = () => {
   const pathname = usePathname();
   const { isLoggedIn, user } = useAuthContext();
 
-  const isPractitionerPage = pathname.startsWith("/practitioner");
+  const isPractitionerPage = pathname.startsWith("/auth/practitioner");
 
   return (
     <header className="sticky top-0 backdrop-blur-xl z-50">
@@ -73,7 +68,7 @@ const Navbar = () => {
                 <Link
                   href={
                     isPractitionerPage
-                      ? "/practitioner/sign-in/"
+                      ? "/auth/practitioner/sign-in/"
                       : "/auth/sign-in/"
                   }
                 >

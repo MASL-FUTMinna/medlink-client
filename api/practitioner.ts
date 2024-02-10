@@ -6,6 +6,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { LoginSchemaType, SignupSchemaType } from "@/schemas/authSchema";
 import { PractitionerSignupSchemaType } from "@/schemas/practitionerSchema";
+import { useAuthContext } from "@/providers/AuthProvider";
+
 
 export const useGetPractionerById = (id: string) => {
 	return useQuery({
@@ -56,3 +58,16 @@ export const usePractitionerSignUp = () => {
 		},
 	});
 };
+
+export const useGetPractitionerAppointments = () => {
+  const { user } = useAuthContext();
+  return useQuery({
+    queryFn: (): Promise<PractitionerAppointmentResponse> =>
+      axios
+        .get(`${baseUrl}/appointments/practitioners/${user?.id}`)
+        .then((res) => res.data),
+    queryKey: ["user-appointments", user?.id],
+    retry: false,
+  });
+};
+
