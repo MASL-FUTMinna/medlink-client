@@ -23,7 +23,7 @@ export default function Page() {
           ) : (
             data &&
             data?.data.map((appointment) => (
-              <AppointmentList appointment={appointment} />
+              <AppointmentList  key={appointment.id} appointment={appointment} />
             ))
           )
         )
