@@ -16,6 +16,10 @@ interface AppointmentPayload {
   timeZone: string;
 }
 
+interface PractitionerAppointmentPayload {
+  status : string;
+}
+
 interface AppointmentUser {
   id: number;
   first_name: string;
