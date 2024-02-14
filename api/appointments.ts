@@ -84,7 +84,7 @@ export const useCancelAppointment = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["practitioner-appointments"],
+        queryKey: ["user-appointments"],
       });
       toast({
         description: "Appointment Cancelled Successful",
