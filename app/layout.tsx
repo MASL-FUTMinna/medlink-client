@@ -23,7 +23,7 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
-  title: "Medlink",
+  title: "FindCare",
   description: "Streamline access to healthcare services",
 };
 

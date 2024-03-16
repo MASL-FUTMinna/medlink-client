@@ -109,7 +109,7 @@ export default function Page() {
       <div className=" h-[80vh] flex justify-center items-center p-4 ">
         <div className=" bg-blue-50 w-full p-4 space-y-4 max-w-3xl mx-auto rounded-xl lg:p-8 lg:space-y-6">
           <h2 className=" text-xl font-semibold text-center">
-            Welcome to Medlink AI Chatbot
+            Welcome to FindCare AI Chatbot
           </h2>
           <p className=" md:text-lg text-center">
             Your personalized chatbot for all your medical and health related
@@ -176,7 +176,7 @@ export default function Page() {
                     ) : (
                       <div className=" " key={index}>
                         <div className=" bg-blue-100 p-3 rounded-md max-w-[80%] space-y-2">
-                          <h4>Medlink AI</h4>
+                          <h4>FindCare AI</h4>
                           <p
                             className=""
                             dangerouslySetInnerHTML={{
