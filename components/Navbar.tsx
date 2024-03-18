@@ -16,7 +16,7 @@ const Navbar = () => {
       <nav className="section w-full flex justify-between items-center">
         <h2>
           <Link href="/" className="text-accent-800 font-extrabold text-2xl">
-            Medlink
+            FindCare
           </Link>
         </h2>
 
