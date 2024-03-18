@@ -4,6 +4,7 @@ import { Root } from "@/types/bookedAppointments";
 import Image from "next/image";
 import Loading from "@/app/loading";
 import { useRouter } from "next/navigation";
+import { baseUrl } from "@/api/baseUrl";
 
 const dateFormat = (inputDate: string) => {
   const readableDate = new Date(inputDate).toLocaleDateString("en-US", {
@@ -44,14 +45,11 @@ export default function History({ token }: { token: token }) {
       const userId = localStorage.getItem("userId");
       setLoading(true);
       try {
-        const res = await fetch(
-          `https://medlink-server-production.up.railway.app/appointments/users/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token.value}`,
-            },
-          }
-        );
+        const res = await fetch(`${baseUrl}/appointments/users/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token.value}`,
+          },
+        });
         if (!res.ok) {
           setLoading(false);
           throw new Error("Failed to fetch appointment data");

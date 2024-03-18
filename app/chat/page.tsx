@@ -176,7 +176,7 @@ export default function Page() {
                     ) : (
                       <div className=" " key={index}>
                         <div className=" bg-blue-100 p-3 rounded-md max-w-[80%] space-y-2">
-                          <h4>FincCare AI</h4>
+                          <h4>FindCare AI</h4>
                           <p
                             className=""
                             dangerouslySetInnerHTML={{
