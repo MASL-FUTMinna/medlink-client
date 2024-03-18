@@ -4,12 +4,12 @@ import Accordion from "./Accordion";
 const FAQ = () => {
   const FAQ_LIST = [
     {
-      question: "What is Medlink about?",
+      question: "What is FindCare about?",
       answer:
-        "Medlink is a platform that focuses on facilitating remote healthcare services, appointment scheduling, and preliminary health assessments. It does not replace the need for in-person medical examinations in emergency situations.",
+        "FindCare is a platform that focuses on facilitating remote healthcare services, appointment scheduling, and preliminary health assessments. It does not replace the need for in-person medical examinations in emergency situations.",
     },
     {
-      question: "What unique services does Medlink offer?",
+      question: "What unique services does FindCare offer?",
       services: [
         {
           description:

@@ -47,7 +47,7 @@ export default function Page() {
 
             <div className=" space-y-2 lg:space-y-6">
               <h3 className=" text-2xl lg:text-3xl font-semibold">
-                Welcome to MedLink AI Diagnosis
+                Welcome to FindCare AI Diagnosis
               </h3>
 
               <p className=" leading-6 text-gray-500  lg:text-lg lg:leading-8">
