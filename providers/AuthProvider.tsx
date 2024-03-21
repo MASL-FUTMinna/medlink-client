@@ -1,6 +1,7 @@
 "use client";
 
 import config from "@/utils/config";
+import { useRouter } from "next/navigation";
 import React, {
   PropsWithChildren,
   createContext,
@@ -35,6 +36,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<LoggedInUser | null>(null);
 
+  const { push } = useRouter();
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const user = localStorage.getItem(config.key.user);
@@ -54,8 +57,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     setIsLoggedIn(true);
   };
   const logout = () => {
+    push("/auth/sign-in");
     setUser(null);
     setIsLoggedIn(false);
+    localStorage.removeItem(config.key.user);
   };
 
   return (

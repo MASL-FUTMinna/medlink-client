@@ -23,6 +23,7 @@ import {
   useRescheduleAppointment,
 } from "@/api/appointments";
 import config from "@/utils/config";
+import { useBookingContext } from "@/providers/BookAppointmentProvider";
 
 const SelectAppointment = ({ id }: { id: string }) => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
@@ -38,6 +39,7 @@ const SelectAppointment = ({ id }: { id: string }) => {
   const searchParams = useSearchParams();
 
   const appoitmentId = searchParams.get("appointmentId");
+  const { setAppointment, appointmentObj } = useBookingContext();
 
   const {
     register,
@@ -46,6 +48,7 @@ const SelectAppointment = ({ id }: { id: string }) => {
     watch,
   } = useForm<BookAppointmentSchemaType>({
     resolver: yupResolver(bookAppointmentSchema),
+    defaultValues: appointmentObj,
   });
 
   useEffect(() => {
@@ -70,6 +73,7 @@ const SelectAppointment = ({ id }: { id: string }) => {
     if (!isLoggedIn || !user?.id) {
       toast({ description: "Please sign in to continue", variant: "error" });
       localStorage.setItem(config.key.redirect, pathname);
+      setAppointment(data);
       router.push("/auth/sign-in");
       return;
     }
@@ -93,6 +97,10 @@ const SelectAppointment = ({ id }: { id: string }) => {
 
   const handleClose = () => {
     onClose();
+    setAppointment({
+      date: "",
+      time: "",
+    });
     router.push("/appointments/history");
   };
 

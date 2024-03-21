@@ -23,7 +23,10 @@ export default function SigninForm() {
     mutate(data);
   };
   return (
-    <AuthCard title="Welcome" subtitle="Complete details to sign in">
+    <AuthCard
+      title="Welcome Practitioner"
+      subtitle="Complete details to sign in"
+    >
       <form onSubmit={handleSubmit(onSubmit)} className="mt-16">
         <div className="flex flex-col gap-4">
           <Input

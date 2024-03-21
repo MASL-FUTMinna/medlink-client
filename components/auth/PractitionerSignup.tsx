@@ -2,7 +2,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { useForm } from "react-hook-form";
-import { PractitionerSignupSchemaType, practitionerSignupSchema } from "@/schemas/authSchema";
+import {
+  PractitionerSignupSchemaType,
+  practitionerSignupSchema,
+} from "@/schemas/authSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { usePractitionerSignup } from "@/api/auth";
 import AuthCard from "./AuthCard";
@@ -44,6 +47,13 @@ export default function SignupForm() {
           label="Email"
           placeholder="Enter Your Email"
           name="email"
+          control={control}
+        />
+        <Input
+          errors={errors}
+          label="Bio"
+          placeholder="Enter Your Bio"
+          name="bio"
           control={control}
         />
 

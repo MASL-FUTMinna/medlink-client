@@ -7,11 +7,16 @@ import { FaArrowCircleRight, FaUserCircle } from "react-icons/fa";
 import ActionMessages from "@/components/AI Chat/ActionButtons";
 import { BeatLoader } from "react-spinners";
 import { Button } from "@/components/ui/Button";
+import useDisclosure from "@/hooks/useDisclosure";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { CiCircleAlert } from "react-icons/ci";
 
 const directLine = new DirectLine({
   secret: process.env.NEXT_PUBLIC_CHATBOT_API_KEY,
   webSocket: true,
 });
+
+console.log(process.env.NEXT_PUBLIC_CHATBOT_API_KEY);
 
 type UserType = {
   name: string;
@@ -32,6 +37,16 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesContainerRef = useRef(null);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    if (!!user) {
+      setTimeout(() => {
+        onOpen();
+      }, 1000);
+    }
+  }, [user]);
+
   useEffect(() => {
     directLine.activity$
       .filter(
@@ -47,7 +62,7 @@ export default function Page() {
 
         setIsLoading(false);
       });
-  }, []);
+  }, [directLine, user]);
 
   // Function to send a message through the WebSocket.
   const sendMessage = (e: React.FormEvent) => {
@@ -223,6 +238,20 @@ export default function Page() {
           </button>
         </form>
       </section>
+
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent className="min-w-[600px] space-y-4 flex justify-center flex-col items-center h-[350px] ">
+          <CiCircleAlert className="text-[60px] text-red-500" />
+          <p className="text-center w-8/12 font-medium text-xl text-gray-500 ">
+            Disclaimer: The diagnosis generated from this section is suggestive
+            not definitive
+          </p>
+
+          <Button onClick={onClose} className="w-[220px]">
+            Okay, Continue
+          </Button>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }

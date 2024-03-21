@@ -15,3 +15,8 @@ interface HospitalItemType {
   city: string;
   state: string;
 }
+
+interface AppointmentObj {
+  date: string;
+  time: string;
+}

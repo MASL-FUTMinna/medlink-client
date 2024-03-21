@@ -67,13 +67,42 @@ export const useRescheduleAppointment = () => {
     },
   });
 };
+
 export const useCancelAppointment = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (values: {
-      payload: PractitionerAppointmentPayload,
+      payload: PractitionerAppointmentPayload;
+      appointmentId: string;
+    }): Promise<AppointmentType> => {
+      const res = await axios.patch(
+        `${baseUrl}/appointments/${values.appointmentId}/users`,
+        values.payload
+      );
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["user-appointments"],
+      });
+      toast({
+        description: "Appointment Cancelled Successful",
+        variant: "success",
+        duration: 2000,
+      });
+    },
+  });
+};
+
+export const useCancelPractitionerAppointment = () => {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (values: {
+      payload: PractitionerAppointmentPayload;
       appointmentId: string;
     }): Promise<AppointmentType> => {
       const res = await axios.patch(
@@ -84,7 +113,7 @@ export const useCancelAppointment = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["user-appointments"],
+        queryKey: ["practitioner-appointments"],
       });
       toast({
         description: "Appointment Cancelled Successful",

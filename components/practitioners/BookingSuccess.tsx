@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
 import { Dialog, DialogContent } from "../ui/dialog";
-import { dateFormat, timeFormat } from "@/utils/helpers";
+import { timezoneFromat } from "@/utils/helpers";
 
 interface BookingSuccessProps {
   isOpen: boolean;
@@ -56,7 +56,10 @@ export default function BookingSuccess({
                 width={15}
                 height={15}
               />
-              {dateFormat(scheduleResponse.date)}
+              {
+                timezoneFromat(scheduleResponse.date, scheduleResponse.time)
+                  .clockDate
+              }
             </div>
             <div className="rotate-90 border border-neutral-400 w-6"></div>
             <div className="text-center text-neutral-500 text-sm font-medium flex justify-center items-center gap-1">
@@ -66,7 +69,10 @@ export default function BookingSuccess({
                 width={15}
                 height={15}
               />
-              {timeFormat(scheduleResponse.time)}
+              {
+                timezoneFromat(scheduleResponse.date, scheduleResponse.time)
+                  .clockTime
+              }
             </div>
           </div>
         </div>

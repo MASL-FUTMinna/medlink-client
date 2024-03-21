@@ -36,6 +36,7 @@ export const dateFormat = (inputDate: string) => {
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Adjust date according to browser's timezone
   });
 
   return readableDate;
@@ -48,7 +49,42 @@ export const timeFormat = (inputTime: string) => {
       hour: "2-digit",
       minute: "2-digit",
       hour12: true,
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Adjust time according to browser's timezone
     }
   );
   return formattedTime;
+};
+
+export const timezoneFromat = (dateString: string, timeString: string) => {
+  // Merge date and time strings
+  const combinedDateTimeString = dateString + "T" + timeString + ":00Z";
+
+  // Convert merged string to Date object
+  const combinedDateTime = new Date(combinedDateTimeString);
+
+  // Add an hour to the combined datetime
+  combinedDateTime.setHours(combinedDateTime.getHours() + 1);
+
+  // Format the resulting datetime
+  const formattedDateTime = combinedDateTime
+    .toISOString()
+    .slice(0, 16)
+    .replace("T", " ");
+
+  // Convert to clock time format
+  const clockTime = combinedDateTime.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  // Convert to clock date format
+  const clockDate = combinedDateTime.toLocaleDateString([], {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  });
+
+  // Print the result
+  return { formattedDateTime, clockTime, clockDate };
 };

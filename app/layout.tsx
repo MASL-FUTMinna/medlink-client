@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import AuthProvider from "@/providers/AuthProvider";
 import { cookies } from "next/headers";
 import config from "@/utils/config";
+import BookAppointmentProvider from "@/providers/BookAppointmentProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,12 +37,14 @@ export default function RootLayout({
     <html lang="en">
       <ReactQueryClientProvider>
         <AuthProvider>
-          <body className={`${inter.variable} ${lexend.variable}`}>
-            <Header />
-            {children}
-            <Footer />
-            <Toaster />
-          </body>
+          <BookAppointmentProvider>
+            <body className={`${inter.variable} ${lexend.variable}`}>
+              <Header />
+              {children}
+              <Footer />
+              <Toaster />
+            </body>
+          </BookAppointmentProvider>
         </AuthProvider>
       </ReactQueryClientProvider>
     </html>

@@ -2,7 +2,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import ConfirmAction from "../custom/ConfirmAction";
 import { Button } from "../ui/Button";
 import useDisclosure from "@/hooks/useDisclosure";
-import { useCancelPractitionerAppointment } from "@/api/appointments";
+import { useCancelAppointment } from "@/api/appointments";
 import config from "@/utils/config";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuthContext } from "@/providers/AuthProvider";
@@ -10,7 +10,7 @@ import { useToast } from "../ui/use-toast";
 import { useEffect } from "react";
 
 interface AppointmentItemProps {
-  appointment: PractitionerAppointments;
+  appointment: UserAppointment;
 }
 
 const CancelAppointment = ({ appointment }: AppointmentItemProps) => {
@@ -19,11 +19,7 @@ const CancelAppointment = ({ appointment }: AppointmentItemProps) => {
   const { toast } = useToast();
   const pathname = usePathname();
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const {
-    isPending,
-    mutate: Cancel,
-    isSuccess,
-  } = useCancelPractitionerAppointment();
+  const { isPending, mutate: Cancel, isSuccess } = useCancelAppointment();
 
   useEffect(() => {
     isSuccess && onClose();
@@ -64,7 +60,7 @@ const CancelAppointment = ({ appointment }: AppointmentItemProps) => {
         onClose={onClose}
         onCancel={onClose}
         isLoading={isPending}
-        message={`Are you sure you want to cancel your appointment with ${appointment.user.last_name} ${appointment.user.first_name}?`}
+        message={`Are you sure you want to cancel your appointment with ${appointment.practitioner.first_name} ${appointment.practitioner.last_name}?`}
       />
     </div>
   );

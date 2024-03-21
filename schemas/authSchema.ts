@@ -31,6 +31,7 @@ export const signupSchema = yup.object({
 export const practitionerSignupSchema = yup.object({
   firstName: yup.string().required("First name is Required"),
   lastName: yup.string().required("Last name is Required"),
+  bio: yup.string().required("Bio is Required"),
   email: yup
     .string()
     .required("Email is required")
@@ -50,4 +51,5 @@ export const practitionerSignupSchema = yup.object({
 
 export interface LoginSchemaType extends yup.InferType<typeof loginSchema> {}
 export interface SignupSchemaType extends yup.InferType<typeof signupSchema> {}
-export interface PractitionerSignupSchemaType extends yup.InferType<typeof practitionerSignupSchema> {}
+export interface PractitionerSignupSchemaType
+  extends yup.InferType<typeof practitionerSignupSchema> {}

@@ -5,14 +5,9 @@ import diagnosisImg1 from "@/public/assets/images/diagnosis-1.png";
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
 import MaxWidth from "@/components/MaxWidth";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Page() {
-  const router = useRouter();
-
-  const goToAiChat = () => {
-    router.push("/chat");
-  };
   return (
     <main>
       <header
@@ -31,7 +26,12 @@ export default function Page() {
               our AI engages you in a personalized, insightful conversation to
               uncover potential health concerns.
             </p>
-            <Button>Get Diagnosis</Button>
+
+            <div>
+              <Link href="/chat">
+                <Button>Get Diagnosis</Button>
+              </Link>
+            </div>
           </div>
         </MaxWidth>
       </header>
@@ -50,7 +50,7 @@ export default function Page() {
                 Welcome to FindCare AI Diagnosis
               </h3>
 
-              <p className=" leading-6 text-gray-500  lg:text-lg lg:leading-8">
+              <p className="leading-6 text-gray-500  lg:text-lg lg:leading-8">
                 {` Prepare for an interactive journey as we delve into your health
                 history through a personalized clinical-history taking process.
                 Your health story matters, and we're here to uncover the
@@ -58,8 +58,11 @@ export default function Page() {
               </p>
 
               {/* <MedicalQuestions /> */}
-
-              <Button onClick={goToAiChat}>Start Diagnosis</Button>
+              <div>
+                <Link href="/chat">
+                  <Button>Start Diagnosis</Button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>

@@ -55,7 +55,6 @@ export default function History({ token }: { token: token }) {
           throw new Error("Failed to fetch appointment data");
         }
         const result = await res.json();
-        console.log({ result });
         setData(result);
         setLoading(false);
       } catch (error) {
@@ -65,7 +64,6 @@ export default function History({ token }: { token: token }) {
 
     fetchAppointments();
   }, []);
-  console.log(data);
   return (
     <main>
       <section className="section py-12 bg-slate-50">
