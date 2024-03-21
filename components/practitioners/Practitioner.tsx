@@ -1,44 +1,58 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-type Prop = {
-  id: string;
-  name: string;
-  hospital: string;
-  profession: string;
-  img: string;
-};
+interface PractitionerProps {
+  practitioner: PractitionerType;
+  appointmentId: string | null;
+}
 
-const Practioner = ({ id, name, hospital, profession, img }: Prop) => {
-  const router = useRouter();
+const Practioner = ({ practitioner, appointmentId }: PractitionerProps) => {
+  const { id, first_name, last_name, hospital_name, specialization, photoUrl } =
+    practitioner;
 
   return (
-    <li
-      className="font-head cursor-pointer"
-      onClick={() => router.push(`/appointments/${id}`)}
+    <Link
+      href={
+        appointmentId
+          ? `/appointments/practitioner/${id}?appointmentId=${appointmentId}`
+          : `/appointments/practitioner/${id}`
+      }
+      className="font-head cursor-pointer relative pb-2"
     >
-      <Image
-        src={img}
-        alt={`Headshot of ${name}`}
-        width={300}
-        height={600}
-        className="w-full"
-      />
-      <h3>Dr. {name}</h3>
-      <div className="flex gap-2">
+      <div className="absolute h-full top-0 w-full left-0 hover:bg-secondary/20 rounded-sm transition-all duration-300 ease-in-out "></div>
+      <div className="h-[400px] bg-slate-300">
         <Image
-          src="/assets/icons/hospital.svg"
-          alt="Hospital building icon"
-          width={20}
-          height={20}
+          src={photoUrl}
+          alt={`Headshot of ${first_name}`}
+          width={300}
+          height={600}
+          className="w-full h-full object-cover mb-3"
         />
-        <p className="text-[#7A7A7A] text-xs">
-          {profession} at <span className="uppercase">{hospital}</span>
-        </p>
       </div>
-    </li>
+      <div className="p-1">
+        <h3>
+          Dr. {last_name} {first_name}
+        </h3>
+        <div className="flex gap-2 items-start ">
+          <Image
+            src="/assets/icons/hospital.svg"
+            alt="Hospital building icon"
+            width={20}
+            height={20}
+          />
+          <div>
+            <p className="text-[#7A7A7A] text-xs font-light">
+              {specialization}
+            </p>
+            <p className="text-[#7A7A7A] text-xs font-light capitalize">
+              {hospital_name}
+            </p>
+          </div>
+        </div>
+      </div>
+    </Link>
   );
 };
 
